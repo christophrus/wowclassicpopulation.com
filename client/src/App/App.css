@@ -91,6 +91,10 @@ main {
   color: #D7CB83;
 }
 
+.box-wrapper.normal > ol > li {
+  padding: 6px 0;
+}
+
 .box-wrapper.upload > div {
   display: flex;
   flex-direction: column;

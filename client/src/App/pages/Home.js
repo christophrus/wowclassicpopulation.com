@@ -32,19 +32,19 @@ const Home = () => {
       <h1>Census - Wow Classic Population</h1>
       <div className="box-wrapper normal">
         {FactionPieChart}
-        <h2 className="highlight">We need your help!</h2>
+        <h2 className="highlight">I need your help!</h2>
         <p>
           Are you interested in growing the database? Install the{' '}
           <a href="https://github.com/christophrus/CensusPlusClassic/releases">
             CensusPlusClassic Addon
           </a>
-          , start gathering data while you are playing and submit it to our database.
+          , start gathering data while you are playing and submit it to the database.
           <br />
           <br />
         </p>
         <p>
           Do you need assistance? Just follow the data submission{' '}
-          <Link to="./submit">Instructions</Link>.
+          <Link to="./submit">instructions</Link>.
         </p>
       </div>
     </div>

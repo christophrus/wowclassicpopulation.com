@@ -143,7 +143,7 @@ const Submit = () => {
           </li>
           <li>Logout or do a /reload to force the addon to write its data into the *.lua file</li>
           <li>
-            go to{' '}
+            Navigate to{' '}
             <strong>
               C:\Program Files\World of
               Warcraft\_classic_beta_\WTF\Account\1234567#1\SavedVariables\
