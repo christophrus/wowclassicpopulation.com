@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import BarChart from './BarChart';
 import './CharacterChart.css';
 
@@ -86,20 +87,31 @@ const CharacterChart = props => {
     .join(' - ')} ${levelLabel}`;
   subHeadline = <h3>{subHeadline}</h3>;
 
+  let realmAndFaction;
+  if (query && query.realm && query.faction) {
+    realmAndFaction = (
+      <span>
+        on
+        <strong>
+          &nbsp;{query.realm} ({query.faction})
+        </strong>
+      </span>
+    );
+  }
+
   return (
     <div className="character-chart">
       {characterStats.realms.length === 0 ? (
-        <div>
+        <div className="box-wrapper normal">
           <p>No data found for this selection</p>
-          <h2>We need your help!</h2>
+          <h2 className="highlight">We need your help!</h2>
           <p>
-            If you&apos;re playing on{' '}
-            <strong>
-              {query.realm} ({query.faction})
-            </strong>{' '}
-            you could start gathering data and upload it to our database
+            If you&apos;re playing World of Warcraft: Classic {realmAndFaction} you could start
+            gathering data and upload it to our database
           </p>
-          <p>Look at the Instructions if you need help getting it started</p>
+          <p>
+            Look at the <Link to="./submit">Instructions</Link> if you need help getting it started.
+          </p>
         </div>
       ) : (
         <div>

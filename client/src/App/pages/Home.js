@@ -1,50 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PieChart from './components/PieChart';
 
 const Home = () => {
+  const [quickStats, setQuickstats] = useState(false);
+
+  const getQuickStats = () => {
+    window
+      .fetch(`/api/stats/quick`)
+      .then(res => res.json())
+      .then(stats => {
+        setQuickstats(stats);
+      });
+  };
+
+  useEffect(() => {
+    if (!quickStats) {
+      getQuickStats();
+    }
+  });
+
+  let FactionPieChart = <div>Baking a pie ...</div>;
+  if (quickStats) {
+    FactionPieChart = (
+      <PieChart id="faction-pie-chart" width="400" height="400" data={quickStats} />
+    );
+  }
+
   return (
     <div className="App">
       <h1>Census - Wow Classic Population</h1>
       <div className="box-wrapper normal">
-        <p className="intro">
-          <strong className="stroke">Start gathering data, instructions are here:</strong>
-          <Link to="./upload"> CensusPlusClassic Addon</Link>
+        {FactionPieChart}
+        <h2 className="highlight">We need your help!</h2>
+        <p>
+          Are you interested in growing the database? Then Install the{' '}
+          <a href="https://github.com/christophrus/CensusPlusClassic/releases">
+            CensusPlusClassic Addon
+          </a>
+          , start gathering data while you are playing and submit it into our database.
           <br />
           <br />
         </p>
-        <h2>Details</h2>
-        <h3>What</h3>
         <p>
-          I&apos;m currently gathering character data from the classic beta and stress test realms.
-          This data includes character names, realm, faction, race, class, level and guild. This
-          data is funneled into an online database, so that I can generate some fancy charts out of
-          it so that everyone can have a easy look on it.
-        </p>
-        <h3>How</h3>
-        <p>
-          I have forked the client 7.3.5 version of CenusPlus and fixed it to work with the beta
-          client. CenusPlus is an addon that basically chains /who request in an intelligent way, so
-          that it can gather as much as possible characters that are currently online on a realm.
-          The addon saves all this data in a *.lua file that then can be uploaded onto this website
-          to merge it with the gathered data of other people.
-        </p>
-        <h3>Who</h3>
-        <p>
-          Currently I&apos;m working alome on this project and so far I gathered all character data
-          by myself, but I would really appreciate if more people would join and start gathering
-          data.
-        </p>
-        <h3>Motivation</h3>
-        <p>
-          I&apos;m a junior web developer and using this project to sharpen my addon and web
-          development skills.
-        </p>
-        <h3>When</h3>
-        <p>
-          The state of this website is like the one of classic wow: beta. At the moment I&apos;m
-          working constantly on this project and my goal is it to bring it to improve it to
-          perfection until the launch of classic wow. When you find some bugs, feel free to post
-          them in my reddit post.
+          Do you need assistance? Just follow this <Link to="./submit">Instructions</Link>
         </p>
       </div>
     </div>

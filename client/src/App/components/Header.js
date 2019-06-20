@@ -24,8 +24,11 @@ const Header = props => {
         <Link className={pathname === '/activity' ? 'active' : ''} to="./activity">
           Activity
         </Link>
-        <Link className={pathname === '/upload' ? 'active' : ''} to="./upload">
-          Upload
+        <Link className={pathname === '/submit' ? 'active' : ''} to="./submit">
+          Submit
+        </Link>
+        <Link className={pathname === '/about' ? 'active' : ''} to="./about">
+          About
         </Link>
       </nav>
     </header>

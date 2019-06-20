@@ -5,7 +5,8 @@ import './App.css';
 import Home from './pages/Home';
 import Characters from './pages/Characters';
 import Activity from './pages/Activity';
-import Upload from './pages/Upload';
+import Submit from './pages/Submit';
+import About from './pages/About';
 import Header from './components/Header';
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/characters" component={Characters} />
             <Route path="/activity" component={Activity} />
-            <Route path="/upload" component={Upload} />
+            <Route path="/submit" component={Submit} />
+            <Route path="/about" component={About} />
           </Switch>
           <footer>
             <p>

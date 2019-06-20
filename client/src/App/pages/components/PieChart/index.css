@@ -1,0 +1,15 @@
+.faction-pie.alliance {
+  fill: #223355;
+}
+
+.faction-pie.horde {
+  fill: #883333;
+}
+
+.faction-pie.text.alliance {
+  fill: #923148;
+}
+
+.faction-pie.text.horde {
+  fill:#456F72;
+}
