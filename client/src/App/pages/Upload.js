@@ -70,7 +70,7 @@ const Upload = () => {
       <div>
         {ErrorPanel}
         <h2>Upload data</h2>
-        <p>Select your CensusPlus.lua (instruction see above)</p>
+        <p>Select your CensusPlusClassic.lua (instruction see above)</p>
         <input
           accept=".lua"
           className={classes.input}
@@ -106,7 +106,7 @@ const Upload = () => {
         <h2>Thanks for submitting!</h2>
         <h3>Stats</h3>
         <p>New characters inserted: {uploadResult.charStats.inserted}</p>
-        <p>Characters updated: {uploadResult.charStats.inserted}</p>
+        <p>Characters updated: {uploadResult.charStats.updated}</p>
         <p>Acitvity datasets inserted: {uploadResult.timeStats.inserted}</p>
       </div>
     );
@@ -145,11 +145,11 @@ const Upload = () => {
               C:\Program Files\World of
               Warcraft\_classic_beta_\WTF\Account\1762882#1\SavedVariables\
             </strong>{' '}
-            and find the <strong>CensusPlus.lua</strong>{' '}
+            and find the <strong>CensusPlusClassic.lua</strong>{' '}
             <em>(1762882#1 is a different number for you or your account name)</em>
           </li>
           <li>
-            Upload the <strong>CensusPlus.lua</strong> with the form below
+            Upload the <strong>CensusPlusClassic.lua</strong> with the form below
           </li>
         </ol>
       </div>
