@@ -1,8 +1,9 @@
 /* eslint-disable func-names */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import { filter } from './Helper';
 import './index.css';
+
+const { filter } = require('./Helper');
 
 class LineChart extends Component {
   componentDidMount() {
