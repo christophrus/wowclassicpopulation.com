@@ -120,14 +120,21 @@ const Submit = () => {
         <ol>
           <li>
             Download{' '}
-            <a href="https://github.com/christophrus/CensusPlusClassic/releases">
+            <a
+              href="https://github.com/christophrus/CensusPlusClassic/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               CensusPlusClassic
             </a>{' '}
             from Github
           </li>
           <li>
-            Use an unzipping propram like <a href="https://www.7-zip.org/">7zip</a> and extract the
-            CensusPlusClassic folder to your addons directory
+            Use an unzipping propram like{' '}
+            <a href="https://www.7-zip.org/" target="_blank" rel="noopener noreferrer">
+              7zip
+            </a>{' '}
+            and extract the CensusPlusClassic folder to your addons directory
           </li>
           <li>
             The beta addon directory is usually located here:

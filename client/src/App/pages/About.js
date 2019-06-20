@@ -36,7 +36,9 @@ const About = () => {
           The state of this website is like the one of Classic WoW: Beta. At the moment I&apos;m
           working constantly on this project and my goal is it to improve it near perfection until
           the launch of Classic WoW. When you find some bugs, feel free to report them in my{' '}
-          <a href="https://www.reddit.com/c30vdp">reddit post</a>
+          <a href="https://www.reddit.com/c30vdp" target="_blank" rel="noopener noreferrer">
+            reddit thread
+          </a>
         </p>
       </div>
     </div>

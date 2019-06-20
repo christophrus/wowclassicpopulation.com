@@ -34,17 +34,26 @@ const Home = () => {
         {FactionPieChart}
         <h2 className="highlight">I need your help!</h2>
         <p>
-          Are you interested in growing the database? Install the{' '}
-          <a href="https://github.com/christophrus/CensusPlusClassic/releases">
+          Are you interessted in growing and completing the database? Install the{' '}
+          <a
+            href="https://github.com/christophrus/CensusPlusClassic/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             CensusPlusClassic Addon
           </a>
-          , start gathering data while you are playing and submit it to the database.
+          , start gathering data while you&apos;re playing and submit it to the database{' '}
+          <Link to="./submit">here</Link>.
           <br />
           <br />
         </p>
         <p>
           Do you need assistance? Just follow the data submission{' '}
-          <Link to="./submit">instructions</Link>.
+          <Link to="./submit">instructions</Link> or ask in my{' '}
+          <a href="https://www.reddit.com/c30vdp" target="_blank" rel="noopener noreferrer">
+            reddit thread
+          </a>
+          .
         </p>
       </div>
     </div>
