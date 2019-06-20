@@ -1,9 +1,8 @@
 /* eslint-disable func-names */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import { onlyTurningPoints, notTooCloseToMinOrMaxInStack } from './Helper';
 import './index.css';
-
-const { filter } = require('./Helper');
 
 class LineChart extends Component {
   componentDidMount() {
@@ -116,8 +115,8 @@ class LineChart extends Component {
             temp.date = xScale(new Date(el.date));
             return temp;
           })
-          .filter(filter.onlyTurningPoints)
-          .filter(filter.notTooCloseToMinOrMaxInStack)
+          .filter(onlyTurningPoints)
+          .filter(notTooCloseToMinOrMaxInStack)
       )
       .enter()
       .append('circle')

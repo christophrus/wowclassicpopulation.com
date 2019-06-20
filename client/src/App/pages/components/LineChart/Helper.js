@@ -24,7 +24,7 @@ const buildStack = (arr, currentIndex) => {
   ];
 };
 
-const notTooCloseToMinOrMaxInStack = (el, index, arr) => {
+export function notTooCloseToMinOrMaxInStack(el, index, arr) {
   const stack = buildStack(arr, index);
   const stackValues = stack.map(stackEl => stackEl.onlineTotal);
   const stackMin = Math.min(...stackValues);
@@ -41,9 +41,9 @@ const notTooCloseToMinOrMaxInStack = (el, index, arr) => {
     (gapToMin < 5 || gapToMax < 5) && yMaxVal !== el.date && yMinVal !== el.date;
 
   return !gapToMinOrMaxTooSmall;
-};
+}
 
-const onlyTurningPoints = (el, index, arr) => {
+export function onlyTurningPoints(el, index, arr) {
   const prevIndex = getIndex(index, -1);
   const nextIndex = getIndex(index, 1, arr.length);
   const prev = arr[prevIndex].onlineTotal;
@@ -52,11 +52,4 @@ const onlyTurningPoints = (el, index, arr) => {
   const isBeginningOrEnd = index === 0 || index === arr.length - 1;
   const isTurningPoint = !((prev <= cur && next >= cur) || (prev >= cur && next <= cur));
   return isBeginningOrEnd || isTurningPoint;
-};
-
-module.exports = {
-  filter: {
-    onlyTurningPoints,
-    notTooCloseToMinOrMaxInStack
-  }
-};
+}
