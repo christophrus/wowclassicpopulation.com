@@ -11,7 +11,8 @@ class Activity extends Component {
       activityStats: null,
       realmOptions: null,
       query: {},
-      width: 0
+      width: 0,
+      height: 0
     };
   }
 
@@ -69,13 +70,13 @@ class Activity extends Component {
   };
 
   updateWindowDimensions = () => {
-    this.setState({ width: window.innerWidth });
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
 
   render() {
-    const { activityStats, realmOptions, query, width } = this.state;
+    const { activityStats, realmOptions, query, width, height } = this.state;
 
-    let chartHeight = 400;
+    let chartHeight = 550;
     let chartWidth = 600;
 
     const chartMargin = { top: 50, right: 50, bottom: 50, left: 50 };
@@ -84,9 +85,12 @@ class Activity extends Component {
       chartWidth = width <= 360 ? 360 * 0.96 : width * 0.96;
       chartHeight = chartWidth / 1.5;
       chartMargin.right = 10;
+    } else {
+      chartWidth = width * 0.96;
+      if (height > 800) {
+        chartHeight = height - 400;
+      }
     }
-
-    console.log(chartWidth);
 
     let filterPanel;
 

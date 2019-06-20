@@ -15,11 +15,9 @@ class BackgroundVideo extends Component {
     const { videoURL } = this.state;
     return (
       <div className="fullscreen-bg">
-        <div className="overlay">
-          <video className="video-bg" loop muted autoPlay poster="images/main.jpg">
-            <source src={videoURL} type="video/webm" />
-          </video>
-        </div>
+        <video className="video-bg" loop muted autoPlay poster="images/main.jpg">
+          <source src={videoURL} type="video/webm" />
+        </video>
       </div>
     );
   }
