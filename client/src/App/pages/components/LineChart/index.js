@@ -20,12 +20,11 @@ class LineChart extends Component {
   }
 
   drawChart() {
-    const { data, width, height } = this.props;
+    const { data, width, height, margin } = this.props;
     const { id } = this.props;
 
     const combined = [].concat(...data);
 
-    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
 

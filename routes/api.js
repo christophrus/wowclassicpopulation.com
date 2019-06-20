@@ -24,6 +24,15 @@ router.get('/list/realms', (req, res, next) => {
   });
 });
 
+router.get('/stats/quick', (req, res, next) => {
+  controller.getTimeStats(req, (err, data) => {
+    if (err) {
+      return next(err);
+    }
+    return res.json(data);
+  });
+});
+
 router.get('/stats/characters', (req, res, next) => {
   controller.getCharacterStats(req, (err, data) => {
     if (err) {

@@ -78,14 +78,15 @@ class Activity extends Component {
     let chartHeight = 400;
     let chartWidth = 600;
 
+    const chartMargin = { top: 50, right: 50, bottom: 50, left: 50 };
+
     if (width < 600) {
-      chartWidth = width < 360 ? 360 : width * 0.9;
+      chartWidth = width <= 360 ? 360 * 0.96 : width * 0.96;
       chartHeight = chartWidth / 1.5;
+      chartMargin.right = 10;
     }
 
-    if (width <= 360) {
-      chartWidth = 360;
-    }
+    console.log(chartWidth);
 
     let filterPanel;
 
@@ -107,6 +108,7 @@ class Activity extends Component {
               id="activity-chart"
               width={chartWidth}
               height={chartHeight}
+              margin={chartMargin}
               className="chart-container box-wrapper"
               data={activityStats}
               query={query}
