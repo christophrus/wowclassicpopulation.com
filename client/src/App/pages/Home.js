@@ -36,8 +36,8 @@ const Home = () => {
         </p>
         <h3>Motivation</h3>
         <p>
-          I&apos;m a junior web developer from Germany and am using this project to sharpen my addon
-          and web development skills.
+          I&apos;m a junior web developer and using this project to sharpen my addon and web
+          development skills.
         </p>
         <h3>When</h3>
         <p>
