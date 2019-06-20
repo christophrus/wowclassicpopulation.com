@@ -1,0 +1,63 @@
+header {
+  background-color:hsla(163, 52%, 33%, 0.6);
+  display: flex;
+  position: fixed;
+  z-index: 500;
+  width: 100%;
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+
+
+
+.title {
+  padding-left: 20px;
+  text-transform: uppercase;
+}
+
+.title-link {
+  text-shadow: 2px 2px 2px rgba(48, 48, 48, 1);
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 900;
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.title-link > span {
+  color: hsl(11, 72%, 23%);
+}
+
+nav {
+  padding-right: 20px;
+}
+
+nav a {
+  line-height: 60px;
+  padding: 0px 10px;
+  text-decoration: none;
+  color: #fff;
+  padding-bottom: 17px;
+}
+
+nav a.active {
+  border-bottom: 1px solid #fff;
+}
+
+@media (max-width: 1020px) { 
+  header {
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+  }
+  nav {
+    padding: 0;
+  }
+  nav a {
+    padding-bottom: 21px;
+  }
+}

@@ -1,0 +1,135 @@
+
+.App {
+  padding-top: 60px;
+  text-align: center;
+}
+
+@media (max-width: 1020px) { 
+  .App {
+    padding-top: 100px;
+  }
+}
+
+.App h1,
+.App h2,
+.App h3,
+.App h4,
+.App p {
+  text-shadow: 2px 2px 2px rgba(48, 48, 48, 1);
+  margin: 0;
+  color: #fff;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-margin {
+}
+
+.box-wrapper {
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.box-wrapper.normal {
+  max-width: 700px;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 12px;
+}
+
+.box-wrapper.normal h3 {
+  margin-top: 20px;
+}
+
+.box-wrapper.normal p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  text-shadow: none;
+}
+
+.box-wrapper.normal strong {
+  font-size: 16px;
+  color: rgba(85, 218, 228, 0.7);
+}
+
+.box-wrapper.normal a {
+  color: hsla(240, 100%, 50%, 0.8);
+  text-decoration: none;
+}
+
+.box-wrapper.normal a:hover {
+  color: #fff;
+}
+
+.box-wrapper.normal ol {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+}
+
+.box-wrapper.normal ol strong {
+  font-size: 14px;
+  color: rgba(85, 218, 228, 0.7);
+}
+
+.box-wrapper.upload > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  padding: 0 20px 10px 20px;
+}
+
+.form-wrapper p {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.chart-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.chart-container.character {
+  padding-top: 20px;
+}
+
+#range-slider {
+  text-shadow: none;
+}
+
+#activity-chart {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+strong.stroke {
+  margin-right: 6px;
+  color: #fff !important;
+  text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
+}
+
+span.error {
+  color: #fff !important;
+  text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
+}
+
+footer {
+  color: rgba(0, 0, 0, 0.7);
+  margin-top: 30px;
+  font-size: 10px;
+  text-align: center;
+  max-width: 700px;
+}

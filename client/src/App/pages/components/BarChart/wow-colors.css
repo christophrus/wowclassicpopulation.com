@@ -1,0 +1,71 @@
+.bar.classes_paladin{
+  color: hsl(334, 84%, 75%);
+}
+
+.bar.classes_paladin:hover{
+  color: hsl(334, 84%, 65%);
+}
+
+.bar.classes_druid{
+  color: hsl(28, 100%, 52%);
+}
+
+.bar.classes_druid:hover{
+  color: hsl(28, 100%, 42%);
+}
+
+.bar.classes_hunter{
+  color: hsl(85, 53%, 64%);
+}
+
+.bar.classes_hunter:hover{
+  color: hsl(85, 53%, 54%);
+}
+
+.bar.classes_mage{
+  color: hsl(193, 81%, 59%);
+}
+
+.bar.classes_mage:hover{
+  color: hsl(193, 81%, 49%);
+}
+
+.bar.classes_priest{
+  color: hsl(0, 0%, 100%);
+}
+
+.bar.classes_priest:hover{
+  color: hsl(0, 0%, 90%);
+}
+
+.bar.classes_rogue{
+  color: hsl(56, 100%, 71%);
+}
+
+.bar.classes_rogue:hover{
+  color: hsl(56, 100%, 61%);
+}
+
+.bar.classes_shaman{
+  color: hsl(210, 100%, 44%);
+}
+
+.bar.classes_shaman:hover{
+  color: hsl(210, 100%, 34%);
+}
+
+.bar.classes_warlock{
+  color: hsl(240, 74%, 73%);
+}
+
+.bar.classes_warlock:hover{
+  color: hsl(240, 74%, 63%);
+}
+
+.bar.classes_warrior{
+  color: hsl(31, 44%, 61%);
+}
+
+.bar.classes_warrior{
+  color: hsl(31, 44%, 51%);
+}
