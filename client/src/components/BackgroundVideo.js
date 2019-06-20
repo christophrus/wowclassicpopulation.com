@@ -17,6 +17,11 @@ class BackgroundVideo extends Component {
       <div className="fullscreen-bg">
         <video className="video-bg" loop muted autoPlay poster="images/main.png">
           <source src={videoURL} type="video/webm" />
+          <img
+            src="/images/main.png"
+            alt="Your browser does not support the <video> tag"
+            title="Your browser does not support the <video> tag"
+          />
         </video>
       </div>
     );
