@@ -15,7 +15,7 @@ class BackgroundVideo extends Component {
     const { videoURL } = this.state;
     return (
       <div className="fullscreen-bg">
-        <video className="video-bg" loop muted autoPlay poster="images/main.jpg">
+        <video className="video-bg" loop muted autoPlay poster="images/main.png">
           <source src={videoURL} type="video/webm" />
         </video>
       </div>
