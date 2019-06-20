@@ -37,8 +37,13 @@ const useStyles = makeStyles(theme => ({
     width: 300
   },
   outlinedPrimary: {
-    border: '1px solid rgba(255, 255, 255, 0.5)',
-    color: '#fff'
+    border: '1px solid #D7CB83',
+    color: '#D7CB83',
+    '&:hover': {
+      border: '1px solid #7A3C3C',
+      color: '#7A3C3C',
+      backgroundColor: 'rgba(233, 135, 70, 0.08);'
+    }
   }
 }));
 
