@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "predeploy": "cd client && yarn && yarn run build"
+      "predeploy": "cd client && npm && npm run build"
     }
   }
 }
