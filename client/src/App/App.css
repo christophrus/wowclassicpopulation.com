@@ -10,6 +10,12 @@
   }
 }
 
+@media (max-width: 660px) {
+  .App {
+    padding-top: 50px;
+  }
+}
+
 .App h1,
 .App h2,
 .App h3,

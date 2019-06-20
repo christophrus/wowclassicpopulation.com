@@ -25,7 +25,7 @@ router.get('/list/realms', (req, res, next) => {
 });
 
 router.get('/stats/quick', (req, res, next) => {
-  controller.getTimeStats(req, (err, data) => {
+  controller.getQuickStats(req, (err, data) => {
     if (err) {
       return next(err);
     }
