@@ -34,7 +34,11 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2)
   },
   slider: {
-    width: 300
+    width: 300,
+    color: 'rgba(0, 0, 0, 0.54)',
+    '&:hover': {
+      thumb: 'box-shadow: 0px 0px 0px 8px #000'
+    }
   },
   outlinedPrimary: {
     border: '1px solid #D7CB83',

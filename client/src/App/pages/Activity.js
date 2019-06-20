@@ -10,15 +10,22 @@ class Activity extends Component {
     this.state = {
       activityStats: null,
       realmOptions: null,
-      query: {}
+      query: {},
+      width: 0
     };
   }
 
   // Fetch the list on first mount
   componentDidMount() {
     const { query } = this.state;
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
     this.getActivityStats(query);
     this.getRealmList();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   getRealmList = () => {
@@ -61,8 +68,24 @@ class Activity extends Component {
     this.getActivityStats(query);
   };
 
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
   render() {
-    const { activityStats, realmOptions, query } = this.state;
+    const { activityStats, realmOptions, query, width } = this.state;
+
+    let chartHeight = 400;
+    let chartWidth = 600;
+
+    if (width < 600) {
+      chartWidth = width < 360 ? 360 : width * 0.9;
+      chartHeight = chartWidth / 1.5;
+    }
+
+    if (width <= 360) {
+      chartWidth = 360;
+    }
 
     let filterPanel;
 
@@ -82,6 +105,8 @@ class Activity extends Component {
           <div>
             <LineChart
               id="activity-chart"
+              width={chartWidth}
+              height={chartHeight}
               className="chart-container box-wrapper"
               data={activityStats}
               query={query}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className="App">
-      <h1>Project Home</h1>
+      <h1>Census - Wow Classic Population</h1>
       <div className="box-wrapper normal">
         <p className="intro">
           <strong className="stroke">Start gathering data, instructions are here:</strong>

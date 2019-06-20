@@ -10,8 +10,8 @@ class LineChart extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { data, id } = this.props;
-    if (prevProps.data !== data) {
+    const { data, width, id } = this.props;
+    if (prevProps.data !== data || prevProps.width !== width) {
       d3.select(`#${id}`)
         .selectAll('svg')
         .remove();
@@ -20,13 +20,10 @@ class LineChart extends Component {
   }
 
   drawChart() {
-    const { data } = this.props;
+    const { data, width, height } = this.props;
     const { id } = this.props;
 
     const combined = [].concat(...data);
-
-    const width = 600;
-    const height = 400;
 
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     const chartWidth = width - margin.left - margin.right;

@@ -11,9 +11,6 @@ header {
   height: 60px;
 }
 
-
-
-
 .title {
   padding-left: 20px;
   text-transform: uppercase;
@@ -37,7 +34,6 @@ nav {
 }
 
 nav a {
-  line-height: 60px;
   padding: 0px 10px;
   text-decoration: none;
   color: #fff;
@@ -45,19 +41,41 @@ nav a {
 }
 
 nav a.active {
-  border-bottom: 1px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 
 @media (max-width: 1020px) { 
   header {
     flex-direction: column;
-    justify-content: center;
-    height: 100px;
+    justify-content: space-evenly;
+    height: 90px;
   }
   nav {
     padding: 0;
   }
   nav a {
-    padding-bottom: 21px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 660px) {
+  header {
+    height: 50px;
+    justify-content: center;
+  }
+  nav {
+    font-size: 11px;
+  }
+  .title {
+    padding: 0;
+  }
+  .title-link {
+    font-size: 13px;
+  }
+  nav a {
+    padding-bottom: 5px;
+  }
+  nav a.active {
+    border-bottom: 1px solid #fff;
   }
 }
