@@ -60,7 +60,7 @@ const censusData = async (censusDb, cb) => {
 
   // write backup to fs
   const jsonData = JSON.stringify({ parsedTimes, parsedCharacters }, null, 2);
-  const jsonPath = path.join(__dirname, '..', '..', 'temp', `${+new Date()}.zip`);
+  const jsonPath = path.join('/storage/', `${+new Date()}.zip`);
   const zip = new JSZip();
   zip.file('data.json', jsonData);
   zip
