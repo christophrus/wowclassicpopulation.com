@@ -109,7 +109,7 @@ export default function FilterForm({ realmOptions, onChange }) {
               }}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>All</em>
               </MenuItem>
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>

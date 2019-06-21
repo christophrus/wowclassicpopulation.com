@@ -164,7 +164,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
               }}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>All</em>
               </MenuItem>
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
@@ -184,7 +184,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
               }}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>All</em>
               </MenuItem>
               {factionOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
@@ -206,7 +206,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
               }}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>All</em>
               </MenuItem>
               {raceOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
@@ -226,7 +226,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
               }}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>All</em>
               </MenuItem>
               {classOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
