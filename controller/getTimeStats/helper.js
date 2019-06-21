@@ -1,5 +1,9 @@
 const d3 = require('d3');
 
+const isValidDate = d => {
+  return d instanceof Date && !Number.isNaN(d.getTime());
+};
+
 const groupBy = (collection, property) => {
   let val;
   let index;
@@ -46,7 +50,7 @@ const mergeDatasets = (xPropName, yPropName, filterDuplicates, ...datasetsParam)
   const scales = datasets.map(dataset => makeScale(dataset));
 
   /* make an new array where each datapoint is summed with the interpolated 
-	    /* counterparts from all other datasets */
+	/* counterparts from all other datasets */
   let merged = [];
   datasets.forEach((dataset, curDataSetIndex) => {
     const summedDataset = dataset.map(object => {
@@ -73,4 +77,4 @@ const mergeDatasets = (xPropName, yPropName, filterDuplicates, ...datasetsParam)
 
   return merged;
 };
-module.exports = { groupBy, mergeDatasets };
+module.exports = { groupBy, mergeDatasets, isValidDate };

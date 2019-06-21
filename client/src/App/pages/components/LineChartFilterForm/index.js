@@ -52,25 +52,31 @@ export default function FilterForm({ realmOptions, onChange }) {
   }
 
   function handleDateFromChange(event) {
-    if (selectedDateTo !== '' && new Date(selectedDateTo) < new Date(event.target.value)) {
+    const newDateFrom = event.target.value;
+    // switch the fields if dateTo < dateFrom
+    if (selectedDateTo !== '' && new Date(selectedDateTo) < new Date(newDateFrom)) {
       setSelectedDateFrom(selectedDateTo);
-      setSelectedDateTo(event.target.value);
+      setSelectedDateTo(newDateFrom);
     } else {
-      setSelectedDateFrom(event.target.value);
+      setSelectedDateFrom(newDateFrom);
     }
   }
 
   function handleDateToChange(event) {
-    if (selectedDateFrom !== '' && new Date(selectedDateFrom) > new Date(event.target.value)) {
+    const newDateTo = event.target.value;
+    // switch the fields if dateFrom >  dateTo
+    if (selectedDateFrom !== '' && new Date(selectedDateFrom) > new Date(newDateTo)) {
       setSelectedDateTo(selectedDateFrom);
-      setSelectedDateFrom(event.target.value);
+      setSelectedDateFrom(newDateTo);
     } else {
-      setSelectedDateTo(event.target.value);
+      setSelectedDateTo(newDateTo);
     }
   }
 
   function handleResetClick() {
     setSelectedRealm('');
+    setSelectedDateFrom('');
+    setSelectedDateTo('');
     onChange({});
   }
 
@@ -82,7 +88,7 @@ export default function FilterForm({ realmOptions, onChange }) {
     if (selectedDateFrom !== '') {
       query.dateFrom = selectedDateFrom;
     }
-    if (selectedDateFrom !== '') {
+    if (selectedDateTo !== '') {
       query.dateTo = selectedDateTo;
     }
     onChange(query);

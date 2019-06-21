@@ -21,7 +21,6 @@ app.use('/api', apiRouter);
 app.get('/api/getList', (req, res) => {
   const list = ['item1', 'item2', 'item3'];
   res.json(list);
-  console.log('Sent list of items');
 });
 
 // Handles any requests that don't match the ones above
@@ -32,7 +31,7 @@ app.get('*', (req, res) => {
 // Error Handling middleware
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  console.log(err);
+  // console.log(err);
 
   const errCode = err.status || 500;
   const errMessage = err.message || 'Internal Server Error';
