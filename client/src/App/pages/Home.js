@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PieChart from './components/PieChart';
+import useWindowDimensions from './hooks/useWindowDimensions';
 
 const Home = () => {
   const [quickStats, setQuickstats] = useState(false);
+  const { height, width } = useWindowDimensions();
 
   const getQuickStats = () => {
     window
@@ -22,8 +24,17 @@ const Home = () => {
 
   let FactionPieChart = <div>Baking a pie ...</div>;
   if (quickStats) {
+    let pieDimensions = 400;
+    if (width < 500) {
+      pieDimensions = width * 0.8;
+    }
     FactionPieChart = (
-      <PieChart id="faction-pie-chart" width="400" height="400" data={quickStats} />
+      <PieChart
+        id="faction-pie-chart"
+        width={pieDimensions}
+        height={pieDimensions}
+        data={quickStats}
+      />
     );
   }
 

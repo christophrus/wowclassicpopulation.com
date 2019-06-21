@@ -8,8 +8,8 @@ class PieChart extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { data, id } = this.props;
-    if (prevProps.data !== data) {
+    const { data, width, id } = this.props;
+    if (prevProps.data !== data || prevProps.width !== width) {
       d3.select(`#${id}`)
         .selectAll('svg')
         .remove();
