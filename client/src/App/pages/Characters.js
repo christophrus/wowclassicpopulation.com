@@ -28,15 +28,6 @@ class Characters extends Component {
     });
   }
 
-  selectMapper = data => {
-    return data.map(element => ({
-      value: String(element.name)
-        .toLowerCase()
-        .replace(/\s/g, '_'),
-      label: element.name
-    }));
-  };
-
   // Retrieves the list of items from the Express app
   getCharacterStats = (query, cb) => {
     const qs = queryString.stringify(query);

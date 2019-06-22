@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
+import { withRouter } from 'react-router-dom';
 import LineChartFilterForm from './components/LineChartFilterForm';
-import LineChart from './components/LineChart';
 import getRealmList from './helper/getRealmList';
+import ActivityChart from './components/ActivityChart';
 
 class Activity extends Component {
   // Initialize the state
@@ -19,13 +20,15 @@ class Activity extends Component {
 
   // Fetch the list on first mount
   componentDidMount() {
-    const { query } = this.state;
+    const { location } = this.props;
+    const query = queryString.parse(location.search);
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
     this.getActivityStats(query);
     getRealmList(realms => {
       this.setState({
-        realmOptions: realms
+        realmOptions: realms,
+        query
       });
     });
   }
@@ -50,6 +53,12 @@ class Activity extends Component {
   };
 
   handleFilterChange = query => {
+    const { history } = this.props;
+    const qs = queryString.stringify(query);
+    history.push({
+      pathname: '/activity',
+      search: qs
+    });
     this.setState({ query });
     this.getActivityStats(query);
   };
@@ -61,24 +70,7 @@ class Activity extends Component {
   render() {
     const { activityStats, realmOptions, query, width, height } = this.state;
 
-    let chartHeight = 550;
-    let chartWidth = 600;
-
-    const chartMargin = { top: 50, right: 50, bottom: 50, left: 50 };
-
-    if (width < 600) {
-      chartWidth = width <= 360 ? 360 * 0.96 : width * 0.96;
-      chartHeight = chartWidth / 1.5;
-      chartMargin.right = 10;
-    } else {
-      chartWidth = width * 0.96;
-      if (height > 800) {
-        chartHeight = height - 400;
-      }
-    }
-
     let filterPanel;
-
     if (realmOptions !== null) {
       filterPanel = (
         <LineChartFilterForm realmOptions={realmOptions} onChange={this.handleFilterChange} />
@@ -92,21 +84,16 @@ class Activity extends Component {
         {activityStats === null ? (
           <div>Loading data</div>
         ) : (
-          <div>
-            <LineChart
-              id="activity-chart"
-              width={chartWidth}
-              height={chartHeight}
-              margin={chartMargin}
-              className="chart-container box-wrapper"
-              data={activityStats}
-              query={query}
-            />
-          </div>
+          <ActivityChart
+            width={width}
+            height={height}
+            query={query}
+            activityStats={activityStats}
+          />
         )}
       </div>
     );
   }
 }
 
-export default Activity;
+export default withRouter(Activity);

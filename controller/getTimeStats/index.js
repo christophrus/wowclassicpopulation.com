@@ -10,7 +10,7 @@ module.exports = (req, cb) => {
   if (query.hasOwnProperty('dateFrom')) {
     const dateFrom = new Date(`${query.dateFrom} UTC`);
     if (!isValidDate(dateFrom)) {
-      return cb({ status: 400, message: 'Bad request: dateFrom is not a valid date' });
+      return cb(null, []);
     }
     query.date = { $gte: dateFrom };
     delete query.dateFrom;
@@ -24,7 +24,7 @@ module.exports = (req, cb) => {
     }
 
     if (!isValidDate(dateTo)) {
-      return cb({ status: 400, message: 'Bad request: dateTo is not a valid date' });
+      return cb(null, []);
     }
 
     /* when we get the date in format YYYY-mm-dd the date is now set
