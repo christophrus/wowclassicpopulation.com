@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
+import { withRouter } from 'react-router-dom';
 import BarChartFilterForm from './components/BarChartFilterForm';
 import CharacterChart from './components/CharacterChart';
+import getRealmList from './helper/getRealmList';
 
 class Characters extends Component {
   // Initialize the state
@@ -16,12 +18,14 @@ class Characters extends Component {
 
   // Fetch the list on first mount
   componentDidMount() {
-    this.getCharacterStats({}, characterStats =>
-      // initialize realmlist
+    const { location } = this.props;
+    const query = queryString.parse(location.search);
+    this.getCharacterStats(query);
+    getRealmList(realms => {
       this.setState({
-        realmOptions: this.selectMapper(characterStats.realms)
-      })
-    );
+        realmOptions: realms
+      });
+    });
   }
 
   selectMapper = data => {
@@ -36,7 +40,6 @@ class Characters extends Component {
   // Retrieves the list of items from the Express app
   getCharacterStats = (query, cb) => {
     const qs = queryString.stringify(query);
-
     window
       .fetch(`/api/stats/characters?${qs}`)
       .then(res => res.json())
@@ -49,6 +52,12 @@ class Characters extends Component {
   };
 
   handleFilterChange = query => {
+    const { history } = this.props;
+    const qs = queryString.stringify(query);
+    history.push({
+      pathname: '/characters',
+      search: qs
+    });
     this.setState({ query });
     this.getCharacterStats(query);
   };
@@ -80,4 +89,4 @@ class Characters extends Component {
   }
 }
 
-export default Characters;
+export default withRouter(Characters);

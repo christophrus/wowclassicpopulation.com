@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 import LineChartFilterForm from './components/LineChartFilterForm';
 import LineChart from './components/LineChart';
+import getRealmList from './helper/getRealmList';
 
 class Activity extends Component {
   // Initialize the state
@@ -22,32 +23,16 @@ class Activity extends Component {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
     this.getActivityStats(query);
-    this.getRealmList();
+    getRealmList(realms => {
+      this.setState({
+        realmOptions: realms
+      });
+    });
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
-
-  getRealmList = () => {
-    window
-      .fetch(`api/list/realms`)
-      .then(res => res.json())
-      .then(realmList => {
-        this.setState({
-          realmOptions: this.selectMapper(realmList.realms)
-        });
-      });
-  };
-
-  selectMapper = data => {
-    return data.map(element => ({
-      value: String(element)
-        .toLowerCase()
-        .replace(/\s/g, '_'),
-      label: element
-    }));
-  };
 
   // Retrieves the list of items from the Express app
   getActivityStats = (query, cb) => {
