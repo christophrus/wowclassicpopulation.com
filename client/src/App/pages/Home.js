@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <div className="App">
-      <h1>Census - Wow Classic Population</h1>
+      <h1>Wow Classic Population - A census project</h1>
       <p className="subtitle">
         This project gathers census data from World of Warcraft: Classic realms (currently from beta
         &amp; stress tests) with the help of an ingame addon and visualizes it in some fancy,
