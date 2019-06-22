@@ -53,8 +53,6 @@ module.exports = (req, cb) => {
     query.realm = { $in: query.realm };
   }
 
-  console.log(query);
-
   Time.find(query)
     .lean()
     .exec((error, data) => {

@@ -48,7 +48,6 @@ export default function FilterForm({ realmOptions, onChange }) {
   const [selectedDateTo, setSelectedDateTo] = React.useState('');
 
   function handleRealmChange(event) {
-    console.log(event.target.value);
     setSelectedRealm(event.target.value);
   }
 
@@ -95,9 +94,56 @@ export default function FilterForm({ realmOptions, onChange }) {
     onChange(query);
   }
 
+  function handlePreset(event) {
+    const preset = event.target.name;
+    if (preset === 'bothBetaStart') {
+      const pveIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pve');
+      const pveObj = realmOptions[pveIndex];
+      const pvpIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pvp');
+      const pvpObj = realmOptions[pvpIndex];
+      setSelectedRealm([pveObj, pvpObj]);
+      setSelectedDateFrom('2019-06-20');
+      setSelectedDateTo('');
+    } else if (preset === 'avTest') {
+      const alteracIndex = realmOptions.findIndex(find => find.value === 'field_of_strife');
+      const alteracObj = realmOptions[alteracIndex];
+      setSelectedRealm([alteracObj]);
+      setSelectedDateFrom('');
+      setSelectedDateTo('');
+    } else if (preset === 'allStressTest') {
+      const stress2Index = realmOptions.findIndex(find => find.value === 'classic_realm_2');
+      const stress2Obj = realmOptions[stress2Index];
+      const stress3Index = realmOptions.findIndex(find => find.value === 'classic_realm_3');
+      const stress3Obj = realmOptions[stress3Index];
+      const stress15Index = realmOptions.findIndex(find => find.value === 'classic_realm_15');
+      const stress15Obj = realmOptions[stress15Index];
+      setSelectedRealm([stress2Obj, stress3Obj, stress15Obj]);
+      setSelectedDateFrom('');
+      setSelectedDateTo('');
+    }
+  }
+
   return (
     <form className={classes.root} autoComplete="ON">
-      <div className="form-wrapper box-wrapper">
+      <div className="form-wrapper box-wrapper filter-form">
+        <p>Filter presets you may find interesting</p>
+        <ul>
+          <li>
+            <button type="button" className="list" name="bothBetaStart" onClick={handlePreset}>
+              Both beta realms from 2019-06-20 (project start)
+            </button>
+          </li>
+          <li>
+            <button type="button" className="list" name="avTest" onClick={handlePreset}>
+              Alterac Valley Test
+            </button>
+          </li>
+          <li>
+            <button type="button" className="list" name="allStressTest" onClick={handlePreset}>
+              All stress test realms
+            </button>
+          </li>
+        </ul>
         <div>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
