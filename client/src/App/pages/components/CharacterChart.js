@@ -110,7 +110,8 @@ const CharacterChart = props => {
             gathering data and upload it to our database
           </p>
           <p>
-            Look at the <Link to="./submit">Instructions</Link> if you need help getting it started.
+            Look at the <Link to="./contribute">Instructions</Link> if you need help getting it
+            started.
           </p>
         </div>
       ) : (

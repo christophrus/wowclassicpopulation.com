@@ -41,6 +41,11 @@ const Home = () => {
   return (
     <div className="App">
       <h1>Census - Wow Classic Population</h1>
+      <p className="subtitle">
+        This project gathers census data from World of Warcraft: Classic realms (currently from beta
+        &amp; stress tests) with the help of an ingame addon and visualizes it in some fancy,
+        filterable charts.
+      </p>
       <div className="box-wrapper normal">
         {FactionPieChart}
         <h2 className="highlight">I need your help!</h2>
@@ -54,13 +59,13 @@ const Home = () => {
             CensusPlusClassic Addon
           </a>
           , start gathering data while you&apos;re playing and submit it to the database{' '}
-          <Link to="./submit">here</Link>.
+          <Link to="./contribute">here</Link>.
           <br />
           <br />
         </p>
         <p>
           Do you need assistance? Just follow the data submission{' '}
-          <Link to="./submit">instructions</Link> or ask in my{' '}
+          <Link to="./contribute">instructions</Link> or ask in my{' '}
           <a href="https://www.reddit.com/c30vdp" target="_blank" rel="noopener noreferrer">
             reddit thread
           </a>

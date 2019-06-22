@@ -24,8 +24,8 @@ const Header = props => {
         <Link className={pathname === '/activity' ? 'active' : ''} to="./activity">
           Activity
         </Link>
-        <Link className={pathname === '/submit' ? 'active' : ''} to="./submit">
-          Submit
+        <Link className={pathname === '/contribute' ? 'active' : ''} to="./contribute">
+          Contribute
         </Link>
         <Link className={pathname === '/about' ? 'active' : ''} to="./about">
           About

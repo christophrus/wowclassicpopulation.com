@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Submit = () => {
+const Contribute = () => {
   const classes = useStyles();
 
   const [isUploading, setIsUploading] = React.useState(false);
@@ -172,4 +172,4 @@ const Submit = () => {
   );
 };
 
-export default Submit;
+export default Contribute;
