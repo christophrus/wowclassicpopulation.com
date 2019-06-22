@@ -8,9 +8,10 @@ const About = () => {
         <h2>What</h2>
         <p>
           I&apos;m currently gathering character data from the classic beta and stress test realms.
-          This data includes character names, realm, faction, race, class, level and guild. This
-          data is funneled into an online database, so that I can generate some fancy charts out of
-          it so that everyone can have an easy look on it.
+          This data includes character name, realm, faction, race, class, level, guild and an
+          activity snapshot that captures how many people were concurrently online at a specific
+          time. This data is funneled into an online database, so that I can generate some fancy
+          charts out of it so that everyone can have an easy look on it.
         </p>
         <h2>How</h2>
         <p>
@@ -22,18 +23,21 @@ const About = () => {
         </p>
         <h2>Who</h2>
         <p>
-          Currently I&apos;m working alome on this project and so far I&apos;ve gathered most of the
+          Currently I&apos;m working alone on this project and so far I&apos;ve gathered most of the
           character data by myself, but more and more people start gathering and submitting data and
-          I would really appreciate it if even more people would do it, so that we can grow a
+          I would really appreciate it if even more people would join, so that we can grow an
           adequate sample size.
         </p>
         <h2>Motivation</h2>
         <p>
           I&apos;m a junior web developer and recently finished the{' '}
           <a href="https://learn.freecodecamp.org/">freeCodeCamp curriculum</a> and now using this
-          project to improve my coding skills and to gather some real world experience. I was lucky
-          enough to get access to the classic beta and due the lack of a working census addons and a
-          website that could visualize it, I decided to start a project for this by myself.
+          project to improve my coding skills and to gather some real world experience. Not to
+          mention that I absolutely love Vanilla WoW from back in the days and really hope that it
+          will be a great success. Anyways I was lucky enough to get access to the WoW: Classic beta
+          (specifically resubbed 1 month for a chance, lol). Due to the lack of working census
+          addons and a website that could visualize it, I decided to start a project for this by
+          myself.
         </p>
         <h2>When</h2>
         <p>
