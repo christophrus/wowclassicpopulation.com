@@ -43,11 +43,12 @@ const useStyles = makeStyles(theme => ({
 export default function FilterForm({ realmOptions, onChange }) {
   const classes = useStyles();
 
-  const [selectedRealm, setSelectedRealm] = React.useState('');
+  const [selectedRealm, setSelectedRealm] = React.useState([]);
   const [selectedDateFrom, setSelectedDateFrom] = React.useState('');
   const [selectedDateTo, setSelectedDateTo] = React.useState('');
 
   function handleRealmChange(event) {
+    console.log(event.target.value);
     setSelectedRealm(event.target.value);
   }
 
@@ -74,7 +75,7 @@ export default function FilterForm({ realmOptions, onChange }) {
   }
 
   function handleResetClick() {
-    setSelectedRealm('');
+    setSelectedRealm([]);
     setSelectedDateFrom('');
     setSelectedDateTo('');
     onChange({});
@@ -82,8 +83,8 @@ export default function FilterForm({ realmOptions, onChange }) {
 
   function handleApplyClick() {
     const query = {};
-    if (selectedRealm !== '') {
-      query.realm = selectedRealm.label;
+    if (selectedRealm !== []) {
+      query.realm = selectedRealm.map(realm => realm.label);
     }
     if (selectedDateFrom !== '') {
       query.dateFrom = selectedDateFrom;
@@ -101,6 +102,7 @@ export default function FilterForm({ realmOptions, onChange }) {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
             <Select
+              multiple
               value={selectedRealm}
               onChange={handleRealmChange}
               inputProps={{

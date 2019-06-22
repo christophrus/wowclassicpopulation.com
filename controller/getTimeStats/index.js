@@ -48,6 +48,13 @@ module.exports = (req, cb) => {
     delete query.dateTo;
   }
 
+  // check if realm param has multiple values
+  if (Array.isArray(query.realm)) {
+    query.realm = { $in: query.realm };
+  }
+
+  console.log(query);
+
   Time.find(query)
     .lean()
     .exec((error, data) => {
