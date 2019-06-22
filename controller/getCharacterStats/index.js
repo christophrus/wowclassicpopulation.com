@@ -84,7 +84,6 @@ module.exports = (req, cb) => {
     (error, data) => {
       if (error) return cb({ status: 500, message: 'Database Error', trace: error });
       if (data && data.length > 0) {
-        console.log(data[0]);
         return cb(null, data[0]);
       }
       return undefined;

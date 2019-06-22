@@ -4,7 +4,7 @@ import BarChart from './BarChart';
 import './CharacterChart.css';
 
 const CharacterChart = props => {
-  const { characterStats, query } = props;
+  const { realmOptions, characterStats, query } = props;
   let realmLabel = 'All realms';
   let factionLabel = '';
   let raceLabel = '';
@@ -59,6 +59,8 @@ const CharacterChart = props => {
 
   if (realms.length === 1) {
     realmLabel = realms[0].name;
+  } else if (realms.length < realmOptions.length) {
+    realmLabel = realms.map(realm => realm.name).join(', ');
   }
   if (factions.length === 1) {
     factionLabel = factions[0].name;
@@ -104,7 +106,7 @@ const CharacterChart = props => {
       {characterStats.realms.length === 0 ? (
         <div className="box-wrapper normal">
           <p>No data found for this selection</p>
-          <h2 className="highlight">I need your help!</h2>
+          <h2 className="highlight">Your help is wanted!</h2>
           <p>
             If you&apos;re playing World of Warcraft: Classic {realmAndFaction} you could start
             gathering data and upload it to our database

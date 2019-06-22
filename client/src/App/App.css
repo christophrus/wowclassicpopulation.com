@@ -174,3 +174,35 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.filter-form {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-form p {
+  text-shadow: none;
+}
+
+.filter-form ul {
+  text-align: left;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.filter-form button.list {
+     background:none;
+     color:inherit;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     cursor: pointer;
+}
+
+.filter-form ul li {
+  list-style: circle;
+  font-size: 10px;
+}

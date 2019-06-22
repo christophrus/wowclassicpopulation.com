@@ -72,7 +72,11 @@ class Characters extends Component {
         ) : (
           <div>
             {filterPanel}
-            <CharacterChart characterStats={characterStats} query={query} />
+            <CharacterChart
+              realmOptions={realmOptions}
+              characterStats={characterStats}
+              query={query}
+            />
           </div>
         )}
       </div>

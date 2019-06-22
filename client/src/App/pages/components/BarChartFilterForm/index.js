@@ -116,8 +116,10 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
     setSelectedLevel(newValue);
   }
 
-  function handleResetClick() {
+  function resetForm() {
     setSelectedRealm([]);
+    setClassOptions(getClasses());
+    setRaceOptions(getRaces());
     setSelectedFaction('');
     setSelectedRace('');
     setSelectedClass('');
@@ -149,9 +151,78 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
     onChange(query);
   }
 
+  function handlePreset(event) {
+    const preset = event.target.name;
+    if (preset === 'bothBetaRealms40Ally') {
+      const pveIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pve');
+      const pveObj = realmOptions[pveIndex];
+      const pvpIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pvp');
+      const pvpObj = realmOptions[pvpIndex];
+      const allyIndex = factionOptions.findIndex(find => find.value === 'alliance');
+      const allyObj = factionOptions[allyIndex];
+      setSelectedRealm([pveObj, pvpObj]);
+      handleFactionChange({ target: { value: allyObj } });
+      setSelectedClass([]);
+      setSelectedRace([]);
+      setSelectedLevel([40, 40]);
+    } else if (preset === 'pvpOnly40') {
+      const pvpIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pvp');
+      const pvpObj = realmOptions[pvpIndex];
+      setSelectedRealm([pvpObj]);
+      handleFactionChange({ target: { value: '' } });
+      setSelectedRace([]);
+      setSelectedClass([]);
+      setSelectedLevel([40, 40]);
+    } else if (preset === 'pveOnly40') {
+      const pveIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pve');
+      const pveObj = realmOptions[pveIndex];
+      setSelectedRealm([pveObj]);
+      handleFactionChange({ target: { value: '' } });
+      setSelectedRace([]);
+      setSelectedClass([]);
+      setSelectedLevel([40, 40]);
+    } else if (preset === 'alterac') {
+      const alteracIndex = realmOptions.findIndex(find => find.value === 'field_of_strife');
+      const alteracObj = realmOptions[alteracIndex];
+      setSelectedRealm([alteracObj]);
+      handleFactionChange({ target: { value: '' } });
+      setSelectedRace([]);
+      setSelectedClass([]);
+      setSelectedLevel([58, 58]);
+    }
+  }
+
   return (
     <form className={classes.root} autoComplete="off">
-      <div className="form-wrapper box-wrapper">
+      <div className="form-wrapper box-wrapper filter-form">
+        <p>Filter presets you may find interesting</p>
+        <ul>
+          <li>
+            <button type="button" className="list" name="pvpOnly40" onClick={handlePreset}>
+              Beta PvP (both factions) - Level 40
+            </button>
+          </li>
+          <li>
+            <button type="button" className="list" name="pveOnly40" onClick={handlePreset}>
+              Beta PvE (both factions) - Level 40
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              className="list"
+              name="bothBetaRealms40Ally"
+              onClick={handlePreset}
+            >
+              Both Beta realms (Alliance) - Level 40
+            </button>
+          </li>
+          <li>
+            <button type="button" className="list" name="alterac" onClick={handlePreset}>
+              Alterac Valley Test - Level 58
+            </button>
+          </li>
+        </ul>
         <div>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
@@ -249,7 +320,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
           />
         </div>
         <div>
-          <Button className={classes.button} onClick={handleResetClick}>
+          <Button className={classes.button} onClick={resetForm}>
             Reset
           </Button>
           <Button
