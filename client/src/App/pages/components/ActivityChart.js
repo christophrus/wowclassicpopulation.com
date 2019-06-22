@@ -52,7 +52,7 @@ const ActivityChart = props => {
       {activityStats.length === 0 ? (
         <div className="box-wrapper normal">
           <p>No data found for this selection</p>
-          <h2 className="highlight">I need your help!</h2>
+          <h2 className="highlight">Your help is wanted!</h2>
           <p>
             If you&apos;re playing World of Warcraft: Classic {realmName} you could start gathering
             data and upload it to our database

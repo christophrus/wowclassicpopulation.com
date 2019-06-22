@@ -48,7 +48,7 @@ const Home = () => {
       </p>
       <div className="box-wrapper normal">
         {FactionPieChart}
-        <h2 className="highlight">I need your help!</h2>
+        <h2 className="highlight">Your help is wanted!</h2>
         <p>
           Are you interessted in growing and completing the database? Install the{' '}
           <a

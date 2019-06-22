@@ -18,6 +18,11 @@ module.exports = (req, cb) => {
     delete query.maxLevel;
   }
 
+  // check if realm param has multiple values
+  if (Array.isArray(query.realm)) {
+    query.realm = { $in: query.realm };
+  }
+
   // remove from query if property value is all or both
   // eslint-disable-next-line no-restricted-syntax
   for (const key of Object.keys(query)) {
@@ -34,19 +39,23 @@ module.exports = (req, cb) => {
           _total: [{ $group: { _id: null, count: { $sum: 1 } } }],
           _realms: [
             { $group: { _id: '$realm', _count: { $sum: 1 } } },
-            { $project: { _id: 0, name: '$_id', count: '$_count' } }
+            { $project: { _id: 0, name: '$_id', count: '$_count' } },
+            { $sort: { name: 1 } }
           ],
           _factions: [
             { $group: { _id: '$faction', _count: { $sum: 1 } } },
-            { $project: { _id: 0, name: '$_id', count: '$_count' } }
+            { $project: { _id: 0, name: '$_id', count: '$_count' } },
+            { $sort: { name: 1 } }
           ],
           _races: [
             { $group: { _id: '$race', _count: { $sum: 1 } } },
-            { $project: { _id: 0, name: '$_id', count: '$_count' } }
+            { $project: { _id: 0, name: '$_id', count: '$_count' } },
+            { $sort: { name: 1 } }
           ],
           _classes: [
             { $group: { _id: '$class', _count: { $sum: 1 } } },
-            { $project: { _id: 0, name: '$_id', count: '$_count' } }
+            { $project: { _id: 0, name: '$_id', count: '$_count' } },
+            { $sort: { name: 1 } }
           ],
           _levels: [
             { $group: { _id: '$level', _count: { $sum: 1 } } },
@@ -75,6 +84,7 @@ module.exports = (req, cb) => {
     (error, data) => {
       if (error) return cb({ status: 500, message: 'Database Error', trace: error });
       if (data && data.length > 0) {
+        console.log(data[0]);
         return cb(null, data[0]);
       }
       return undefined;

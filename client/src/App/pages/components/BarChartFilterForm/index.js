@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 export default function BarChartFilterForm({ realmOptions, onChange }) {
   const classes = useStyles();
 
-  const [selectedRealm, setSelectedRealm] = React.useState('');
+  const [selectedRealm, setSelectedRealm] = React.useState([]);
   const [selectedFaction, setSelectedFaction] = React.useState('');
   const [selectedRace, setSelectedRace] = React.useState('');
   const [selectedClass, setSelectedClass] = React.useState('');
@@ -117,7 +117,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
   }
 
   function handleResetClick() {
-    setSelectedRealm('');
+    setSelectedRealm([]);
     setSelectedFaction('');
     setSelectedRace('');
     setSelectedClass('');
@@ -128,8 +128,8 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
   function handleApplyClick() {
     const query = {};
     const [minLevel, maxLevel] = selectedLevel;
-    if (selectedRealm !== '') {
-      query.realm = selectedRealm.label;
+    if (selectedRealm !== []) {
+      query.realm = selectedRealm.map(realm => realm.label);
     }
     if (selectedFaction !== '') {
       query.faction = selectedFaction.label;
@@ -156,6 +156,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
             <Select
+              multiple
               value={selectedRealm}
               onChange={handleRealmChange}
               inputProps={{
@@ -163,9 +164,6 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
                 id: 'realm-filter'
               }}
             >
-              <MenuItem value="">
-                <em>All</em>
-              </MenuItem>
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
                   {element.label}

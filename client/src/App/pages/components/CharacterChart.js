@@ -118,7 +118,7 @@ const CharacterChart = props => {
         <div>
           {headLine}
           {subHeadline}
-          <p>Total characters found: {characterStats.total}</p>
+          <p>Total characters recorded: {characterStats.total}</p>
           <div className="chart-container character box-wrapper">
             {factionChart}
             {raceChart}
