@@ -25,9 +25,9 @@ const About = () => {
         <h2>Who made this website?</h2>
         <p>
           Currently I&apos;m working alone on this project and I&apos;ve gathered the initial
-          character data character data by myself, but more and more people start gathering and
-          submitting data and I would really appreciate it if even more people would join, so that
-          we can grow an adequate sample size.
+          character data samples by myself, but more and more people start gathering and submitting
+          data and I would really appreciate it if even more people would join, so that we can grow
+          an adequate sample size.
         </p>
         <h2>Whats the motivation behind it</h2>
         <p>
@@ -36,8 +36,8 @@ const About = () => {
           project to improve my coding skills and to gather some real world experience. Not to
           mention that I absolutely love Vanilla WoW from back in the days and really hope that it
           will be a great success. Anyways I was lucky enough to get access to the WoW: Classic beta
-          (specifically resubbed 1 month for a chance, lol). Due to the lack of working census
-          addons and a website that could visualize it, I decided to start a project for this by
+          (specifically resubbed 1 month for a chance, LUL). Due to the lack of a working census
+          addon and a website that could visualize it, I decided to start a project for this by
           myself.
         </p>
         <h2>What is the goal</h2>
@@ -51,17 +51,17 @@ const About = () => {
         </p>
         <h2>How can I contribute</h2>
         <p>
-          If you have access to the beta or the stress test, it is highly appriciated that you
-          install the{' '}
+          If you have access to the beta or stress test, it is highly appriciated that you install
+          the{' '}
           <a href="https://github.com/christophrus/CensusPlusClassic/releases">CensusPlus Addon</a>{' '}
           and <Link to="./contribute">upload your gathered data</Link> to the website. Besides if
-          find any bugs or have some suggestions, feel free to join the project{' '}
+          you find any bugs or have some suggestions, feel free to join the project{' '}
           <a href="https://discord.gg/MYPWGkv">Discord</a> and post them there.
         </p>
         <h2>How can I contact you?</h2>
         <p>
           The best way to contact me is <a href="https://twitter.com/christophrus">Twitter</a> or in
-          the project <a href="https://discord.gg/MYPWGkv">Discord</a>. You can also find me
+          the project <a href="https://discord.gg/MYPWGkv">Discord</a>, you can also find me
           on&nbsp;
           <a href="https://www.reddit.com/user/christophrus">reddit</a>.
         </p>
