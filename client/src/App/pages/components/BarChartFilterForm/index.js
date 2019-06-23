@@ -163,6 +163,22 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
       setSelectedClass([]);
       setSelectedRace([]);
       setSelectedLevel([40, 40]);
+    } else if (preset === 'pvpOnly40') {
+      const pvpIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pvp');
+      const pvpObj = realmOptions[pvpIndex];
+      setSelectedRealm([pvpObj]);
+      handleFactionChange({ target: { value: '' } });
+      setSelectedRace([]);
+      setSelectedClass([]);
+      setSelectedLevel([40, 40]);
+    } else if (preset === 'pveOnly40') {
+      const pveIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pve');
+      const pveObj = realmOptions[pveIndex];
+      setSelectedRealm([pveObj]);
+      handleFactionChange({ target: { value: '' } });
+      setSelectedRace([]);
+      setSelectedClass([]);
+      setSelectedLevel([40, 40]);
     } else if (preset === 'allStress15') {
       const stress2Index = realmOptions.findIndex(find => find.value === 'classic_realm_2');
       const stress2Obj = realmOptions[stress2Index];
@@ -194,6 +210,16 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
           <li>
             <button type="button" className="list" name="bothBetaRealms40" onClick={handlePreset}>
               Both beta realms - Level 40
+            </button>
+          </li>
+          <li>
+            <button type="button" className="list" name="pvpOnly40" onClick={handlePreset}>
+              Beta PvP - Level 40
+            </button>
+          </li>
+          <li>
+            <button type="button" className="list" name="pveOnly40" onClick={handlePreset}>
+              Beta PvE - Level 40
             </button>
           </li>
           <li>
