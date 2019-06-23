@@ -59,7 +59,7 @@ const CharacterChart = props => {
 
   if (realms.length === 1) {
     realmLabel = realms[0].name;
-  } else if (realms.length < realmOptions.length) {
+  } else if (realmOptions && realms.length < realmOptions.length) {
     realmLabel = realms.map(realm => realm.name).join(', ');
   }
   if (factions.length === 1) {

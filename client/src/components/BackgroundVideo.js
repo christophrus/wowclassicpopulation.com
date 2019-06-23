@@ -15,10 +15,10 @@ class BackgroundVideo extends Component {
     const { videoURL } = this.state;
     return (
       <div className="fullscreen-bg">
-        <video className="video-bg" loop muted autoPlay poster="images/main.png">
+        <video className="video-bg" loop muted autoPlay poster="images/main.jpg">
           <source src={videoURL} type="video/webm" />
           <img
-            src="/images/main.png"
+            src="/images/main.jpg"
             alt="Your browser does not support the <video> tag"
             title="Your browser does not support the <video> tag"
           />
