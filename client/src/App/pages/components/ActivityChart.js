@@ -21,9 +21,14 @@ const ActivityChart = props => {
     }
   }
 
-  const headline = Object.prototype.hasOwnProperty.call(query, 'realm')
-    ? query.realm.join(', ')
-    : 'All realms';
+  let headline = 'All realms';
+  if (Object.prototype.hasOwnProperty.call(query, 'realm')) {
+    if (Array.isArray(query.realm)) {
+      headline = query.realm.join(', ');
+    } else {
+      headline = query.realm;
+    }
+  }
 
   const dateFrom = Object.prototype.hasOwnProperty.call(query, 'dateFrom') ? query.dateFrom : false;
   const dateTo = Object.prototype.hasOwnProperty.call(query, 'dateTo') ? query.dateTo : false;
