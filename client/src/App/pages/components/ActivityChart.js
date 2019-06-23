@@ -30,8 +30,6 @@ const ActivityChart = props => {
     }
   }
 
-  console.log(headline);
-
   const dateFrom = Object.prototype.hasOwnProperty.call(query, 'dateFrom') ? query.dateFrom : false;
   const dateTo = Object.prototype.hasOwnProperty.call(query, 'dateTo') ? query.dateTo : false;
 
