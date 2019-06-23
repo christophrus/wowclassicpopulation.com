@@ -1,19 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
     <div className="App">
-      <h1>About the WowClassicPopulation project</h1>
+      <h1>About</h1>
       <div className="box-wrapper normal">
-        <h2>What</h2>
+        <h2>What is the project about?</h2>
         <p>
           I&apos;m currently gathering character data from the classic beta and stress test realms.
           This data includes character name, realm, faction, race, class, level, guild and an
           activity snapshot that captures how many people were concurrently online at a specific
-          time. This data is funneled into an online database, so that I can generate some fancy
-          charts out of it so that everyone can have an easy look on it.
+          time. This data is funneled into an online database, so that some fancy charts can be
+          generated out of it so that everyone can have an easy look on it.
         </p>
-        <h2>How</h2>
+        <h2>How did you get the numbers?</h2>
         <p>
           I have forked the client 7.3.5 version of CenusPlus and fixed it to work with the beta
           client. CenusPlus is an addon that automatically chains /who request in an intelligent
@@ -21,14 +22,14 @@ const About = () => {
           realm. The addon saves all this data in a *.lua file that then can be uploaded on this
           website where it gets merged with the gathered data of all other people.
         </p>
-        <h2>Who</h2>
+        <h2>Who made this website?</h2>
         <p>
-          Currently I&apos;m working alone on this project and so far I&apos;ve gathered most of the
-          character data by myself, but more and more people start gathering and submitting data and
-          I would really appreciate it if even more people would join, so that we can grow an
-          adequate sample size.
+          Currently I&apos;m working alone on this project and I&apos;ve gathered the initial
+          character data character data by myself, but more and more people start gathering and
+          submitting data and I would really appreciate it if even more people would join, so that
+          we can grow an adequate sample size.
         </p>
-        <h2>Motivation</h2>
+        <h2>Whats the motivation behind it</h2>
         <p>
           I&apos;m a junior web developer and recently finished the{' '}
           <a href="https://learn.freecodecamp.org/">freeCodeCamp curriculum</a> and now using this
@@ -39,15 +40,25 @@ const About = () => {
           addons and a website that could visualize it, I decided to start a project for this by
           myself.
         </p>
-        <h2>When</h2>
+        <h2>What is the goal</h2>
         <p>
-          The state of this website is like the one of WoW Classic: work in progress. At the moment
-          I&apos;m working constantly on it and updates are pushed on a regular basis. My goal is it
-          to improve, polish and make it as stable as possilbe until the launch of WoW: Classic. If
-          you find any bugs or have some suggestions, feel free to join the project{' '}
+          For now the goal is it to track the population numbers of the beta and stress test realms
+          as accurate as possible. The state of this website is like the one of WoW Classic: work in
+          progress. At the moment I&apos;m working constantly on it and updates are pushed on a
+          regular basis. My goal is it to improve, polish and make it as stable as possilbe until
+          the launch of WoW: Classic, so that we can get a realistic idea about the classic
+          population from the beginning.
+        </p>
+        <h2>How can I contribute</h2>
+        <p>
+          If you have access to the beta or the stress test, it is highly appriciated that you
+          install the{' '}
+          <a href="https://github.com/christophrus/CensusPlusClassic/releases">CensusPlus Addon</a>{' '}
+          and <Link to="./contribute">upload your gathered data</Link> to the website. Besides if
+          find any bugs or have some suggestions, feel free to join the project{' '}
           <a href="https://discord.gg/MYPWGkv">Discord</a> and post them there.
         </p>
-        <h2>Contact</h2>
+        <h2>How can I contact you?</h2>
         <p>
           The best way to contact me is <a href="https://twitter.com/christophrus">Twitter</a> or in
           the project <a href="https://discord.gg/MYPWGkv">Discord</a>. You can also find me

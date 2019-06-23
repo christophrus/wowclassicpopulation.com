@@ -84,12 +84,13 @@ main {
 }
 
 .box-wrapper.normal a {
-  color: #E73D1A;
+  text-shadow: 0 0 1px black;
+  color: hsl(47, 58%, 57%);
   text-decoration: none;
 }
 
 .box-wrapper.normal a:hover {
-  color: hsl(10, 81%, 30%);
+  color: hsl(47, 58%, 67%);
 }
 
 .box-wrapper.normal ol {
@@ -202,7 +203,35 @@ footer {
      cursor: pointer;
 }
 
+.filter-form button.list:hover {
+  color: hsl(0, 0%, 30%);
+}
+
 .filter-form ul li {
   list-style: circle;
   font-size: 10px;
+}
+
+.discord-cta {
+  border: 4px solid #fff;
+  margin: 10px 0;
+  padding: 20px 30px;
+  border-radius: 15px;
+  background-color: #CE3C55;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.discord-cta > a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000
+}
+
+.discord-cta > a > p {
+  padding-left: 10px;
+  color: #000;
+  text-shadow: none;
+  text-transform: uppercase;
 }

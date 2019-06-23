@@ -4,8 +4,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +38,12 @@ const useStyles = makeStyles(theme => ({
   slider: {
     width: 300
   },
+  button: {
+    '&:hover': {
+      color: '#DC143C',
+      textShadow: '0 0 1px hsl(0, 0%, 40%)'
+    }
+  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -33,8 +53,9 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #D7CB83',
     color: '#D7CB83',
     '&:hover': {
-      border: '1px solid #7A3C3C',
-      color: '#7A3C3C',
+      border: '1px solid #000',
+      textShadow: '0 0 1px black',
+      color: '#9ACD32',
       backgroundColor: 'rgba(233, 135, 70, 0.08);'
     }
   }
@@ -151,14 +172,14 @@ export default function FilterForm({ realmOptions, onChange }) {
               multiple
               value={selectedRealm}
               onChange={handleRealmChange}
-              inputProps={{
-                name: 'realm',
-                id: 'realm-filter'
-              }}
+              renderValue={selected => selected.map(element => element.label).join(', ')}
+              input={<Input id="realm-filter" name="realm" />}
+              MenuProps={MenuProps}
             >
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
-                  {element.label}
+                  <Checkbox checked={selectedRealm.indexOf(element) > -1} />
+                  <ListItemText primary={element.label} />
                 </MenuItem>
               ))}
             </Select>

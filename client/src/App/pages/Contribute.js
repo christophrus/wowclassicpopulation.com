@@ -6,6 +6,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import Spinner from './components/Spinner';
 
 const useStyles = makeStyles(theme => ({
@@ -119,15 +121,22 @@ const Contribute = () => {
         <h2>How to gather census data</h2>
         <ol>
           <li>
-            Download{' '}
+            Download the CensusPlusClassic addon from{' '}
             <a
               href="https://github.com/christophrus/CensusPlusClassic/releases"
               target="_blank"
               rel="noopener noreferrer"
             >
-              CensusPlusClassic
+              Github
             </a>{' '}
-            from Github
+            or{' '}
+            <a
+              href="https://wow.curseforge.com/projects/censusplusclassic/files"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              CurseForge
+            </a>
           </li>
           <li>
             Use an unzipping propram like{' '}
@@ -167,6 +176,14 @@ const Contribute = () => {
         {SpinnerPanel}
         {UploadPanel}
         {UploadFinishedPanel}
+      </div>
+      <div className="discord-cta">
+        <a href="https://discord.gg/MYPWGkv" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon size="7x" icon={faDiscord} />
+          <p>
+            Join the <br /> project <br /> discord
+          </p>
+        </a>
       </div>
     </div>
   );
