@@ -1,0 +1,3 @@
+Sitemap: https://wowclassicpopulation.com/sitemap.xml
+User-agent: *
+Allow: /
