@@ -38,10 +38,21 @@ nav a {
   text-decoration: none;
   color: #fff;
   padding-bottom: 17px;
+  padding-top: 18px;
 }
+
+nav a:hover {
+  background-color: hsl(183, 52%, 34%);
+  border-bottom: 2px solid hsl(183, 52%, 34%);
+}
+
 
 nav a.active {
   border-bottom: 2px solid #fff;
+}
+
+nav a.active:hover {
+  background-color: #36A4AA;
 }
 
 @media (max-width: 1020px) { 
@@ -55,6 +66,9 @@ nav a.active {
   }
   nav a {
     padding-bottom: 10px;
+  }
+  nav a:hover {
+    padding-top: 12px;
   }
 }
 
@@ -74,6 +88,10 @@ nav a.active {
   }
   nav a {
     padding-bottom: 5px;
+  }
+  nav a:hover {
+    padding-top: 2px;
+    border-bottom: 1px solid hsl(183, 52%, 34%);
   }
   nav a.active {
     border-bottom: 1px solid #fff;
