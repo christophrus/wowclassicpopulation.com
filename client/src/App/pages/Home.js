@@ -51,7 +51,7 @@ const Home = () => {
         {FactionPieChart}
         <h2 className="highlight">Help from the community needed!</h2>
         <p>
-          This project is highly dependant on community participation, because the statistic are
+          This project is highly dependant on community participation, because the statistics are
           only as good as of how many people have the{' '}
           <a
             href="https://github.com/christophrus/CensusPlusClassic/releases"
