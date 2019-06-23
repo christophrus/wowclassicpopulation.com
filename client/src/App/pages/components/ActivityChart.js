@@ -22,7 +22,7 @@ const ActivityChart = props => {
   }
 
   const headline = Object.prototype.hasOwnProperty.call(query, 'realm')
-    ? query.realm
+    ? query.realm.join(', ')
     : 'All realms';
 
   const dateFrom = Object.prototype.hasOwnProperty.call(query, 'dateFrom') ? query.dateFrom : false;

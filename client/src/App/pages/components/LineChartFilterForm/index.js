@@ -156,9 +156,6 @@ export default function FilterForm({ realmOptions, onChange }) {
                 id: 'realm-filter'
               }}
             >
-              <MenuItem value="">
-                <em>All</em>
-              </MenuItem>
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
                   {element.label}
