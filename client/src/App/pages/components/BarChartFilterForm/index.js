@@ -4,7 +4,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
 import './index.css';
@@ -18,6 +21,17 @@ import {
   getRaces,
   getRacesByFaction
 } from './WowHelper';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -240,14 +254,14 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
               multiple
               value={selectedRealm}
               onChange={handleRealmChange}
-              inputProps={{
-                name: 'realm',
-                id: 'realm-filter'
-              }}
+              renderValue={selected => selected.map(element => element.label).join(', ')}
+              input={<Input id="realm-filter" name="realm" />}
+              MenuProps={MenuProps}
             >
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
-                  {element.label}
+                  <Checkbox checked={selectedRealm.indexOf(element) > -1} />
+                  <ListItemText primary={element.label} />
                 </MenuItem>
               ))}
             </Select>
