@@ -205,9 +205,11 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
       const stress2Obj = realmOptions[stress2Index];
       const stress3Index = realmOptions.findIndex(find => find.value === 'classic_realm_3');
       const stress3Obj = realmOptions[stress3Index];
+      const stress12Index = realmOptions.findIndex(find => find.value === 'classic_realm_12');
+      const stress12Obj = realmOptions[stress12Index];
       const stress15Index = realmOptions.findIndex(find => find.value === 'classic_realm_15');
       const stress15Obj = realmOptions[stress15Index];
-      setSelectedRealm([stress2Obj, stress3Obj, stress15Obj]);
+      setSelectedRealm([stress2Obj, stress3Obj, stress12Obj, stress15Obj]);
       handleFactionChange({ target: { value: '' } });
       setSelectedRace([]);
       setSelectedClass([]);
