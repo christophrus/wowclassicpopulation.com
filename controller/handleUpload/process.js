@@ -4,47 +4,6 @@ const JSZip = require('jszip');
 const Character = require('../../models/Character');
 const Time = require('../../models/Time');
 const parse = require('./parse');
-const db = require('./db');
-
-const RethrownError = require('../../lib/RethrownError');
-const { filter } = require('./helper');
-
-const process = {
-  characterData: async parsedChars => {
-    // get the current char db so we can compare it to the uploaded data
-    let charDb;
-    try {
-      charDb = await Character.find({})
-        .lean()
-        .exec();
-    } catch (error) {
-      throw new RethrownError('Database Error', error);
-    }
-
-    // find parsed Chars that actually have changed
-    const updateChars = parsedChars.filter(filter.byChangedChars(charDb));
-
-    // add parsed chars that are new
-    const newChars = parsedChars.filter(filter.byNewChars(charDb));
-
-    return { updateChars, newChars };
-  },
-  timesData: async parsedTimes => {
-    // get the current time db so we can compare it to the uploaded data
-    let timeDb;
-    try {
-      timeDb = await Time.find({})
-        .lean()
-        .exec();
-    } catch (error) {
-      throw new RethrownError('Database Error', error);
-    }
-
-    const newTimes = parsedTimes.filter(filter.byNewTimes(timeDb));
-
-    return newTimes;
-  }
-};
 
 // process the lua database
 const censusData = async (censusDb, cb) => {
@@ -74,28 +33,43 @@ const censusData = async (censusDb, cb) => {
     })
     .pipe(fs.createWriteStream(jsonPath));
 
-  // process the parsed data and find out what data is new or needs to be updated
-  let newTimes;
-  let updateChars;
-  let newChars;
-  try {
-    newTimes = await process.timesData(parsedTimes);
-    ({ updateChars, newChars } = await process.characterData(parsedCharacters));
-  } catch (error) {
-    cb({ status: 500, message: 'Unexpected data processing error', trace: error });
-  }
+  // update db
+  // first create the bulk queries
+  const characterBulk = parsedCharacters.map(character => ({
+    updateOne: {
+      filter: { realm: character.realm, name: character.name },
+      upsert: true,
+      update: { ...character }
+    }
+  }));
 
-  // write processed data to db and get stats about what happened
-  let timeStats;
-  let charStats;
-  try {
-    timeStats = await db.writeTimes(parsedTimes, newTimes);
-    charStats = await db.writeCharacters(parsedCharacters, newChars, updateChars);
-  } catch (error) {
-    cb({ status: 500, message: 'Database writing error', trace: error });
-  }
+  const timesBulk = parsedTimes.map(time => ({
+    updateOne: {
+      filter: { data: time.date, realm: time.realm, faction: time.faction },
+      upsert: true,
+      update: { ...time }
+    }
+  }));
 
-  return cb(null, { charStats, timeStats });
+  // second wait for both queries to finish and return stats
+  Promise.all([Character.bulkWrite(characterBulk), Time.bulkWrite(timesBulk)])
+    .then(([characters, times]) => {
+      const stats = {
+        charStats: {
+          processed: parsedCharacters.length,
+          inserted: characters.upsertedCount,
+          updated: characters.modifiedCount
+        },
+        timeStats: {
+          inserted: times.upsertedCount,
+          updated: times.modifiedCount
+        }
+      };
+      return cb(null, stats);
+    })
+    .catch(error => {
+      cb({ status: 500, message: 'Processing error', trace: error });
+    });
 };
 
 module.exports = {

@@ -1,4 +1,15 @@
-const { sort, filter } = require('./helper');
+// filter methods
+const byDuplicateChars = (element, index, array) => {
+  const foundIndex = array.findIndex(
+    find => find.name === element.name && find.realm === element.realm
+  );
+  return foundIndex === index;
+};
+
+// sort methods
+const byCharLastSeenAsc = (a, b) => new Date(b.lastSeen) - new Date(a.lastSeen);
+const byDateAsc = (a, b) => a.date - b.date;
+
 // traverse through character lua table and make a flat array out of it
 const charactersData = censusDb => {
   let flatCharArray = [];
@@ -27,7 +38,7 @@ const charactersData = censusDb => {
 
   /* filter out duplicate characters that might be in original lua table
   /* because a player deleted its character and recreated it with a different race/class */
-  flatCharArray = flatCharArray.sort(sort.byCharLastSeenAsc).filter(filter.byDuplicateChars);
+  flatCharArray = flatCharArray.sort(byCharLastSeenAsc).filter(byDuplicateChars);
   return flatCharArray;
 };
 
@@ -72,7 +83,7 @@ const timesData = censusDb => {
     });
   });
 
-  flatTimesArray = flatTimesArray.sort(sort.byDateAsc);
+  flatTimesArray = flatTimesArray.sort(byDateAsc);
   return flatTimesArray;
 };
 

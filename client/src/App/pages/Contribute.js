@@ -107,7 +107,8 @@ const Contribute = () => {
       <div>
         <h2 className="highlight">Thanks for submitting!</h2>
         <h3>Stats</h3>
-        <p>New characters inserted: {uploadResult.charStats.inserted}</p>
+        <p>Characters processed: {uploadResult.charStats.processed}</p>
+        <p>Characters inserted: {uploadResult.charStats.inserted}</p>
         <p>Characters updated: {uploadResult.charStats.updated}</p>
         <p>Acitvity datasets inserted: {uploadResult.timeStats.inserted}</p>
       </div>
