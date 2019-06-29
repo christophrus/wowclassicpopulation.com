@@ -10,7 +10,7 @@ const characterSchema = new Schema({
   race: { type: String, required: true, index: true },
   guild: { type: String, index: true },
   level: { type: Number, required: true, index: true },
-  lastSeen: { type: Date, required: true },
+  lastSeen: { type: Date, required: true }
 });
 
 module.exports = mongoose.model('Character', characterSchema);

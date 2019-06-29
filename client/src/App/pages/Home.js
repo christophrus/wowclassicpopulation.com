@@ -43,9 +43,10 @@ const Home = () => {
   return (
     <div className="App">
       <h1>Wow Classic Population - A census project</h1>
-      <p className="subtitle">
-        Gathers census data from World of Warcraft: Classic realms (currently beta &amp; stress
-        tests) with the help of an ingame addon and visualizes it in some fancy, filterable charts.
+      <p className="intro">
+        We are collecting census data from the World of Warcraft: Classic realms (currently beta
+        &amp; stress tests) with the help of an ingame addon and visualizes it in some fancy,
+        filterable charts.
       </p>
       <div className="box-wrapper normal">
         {FactionPieChart}
@@ -60,8 +61,8 @@ const Home = () => {
           >
             CensusPlusClassic addon
           </a>{' '}
-          installed and submit their gathered data to the website. If you wanna participate in
-          improving the significance of the samples, just start gathering data while you&apos;re
+          installed and submit their collected data to the website. If you wanna participate in
+          improving the significance of the samples, just start collecting data while you&apos;re
           playing.
           <br />
           <br />

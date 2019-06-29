@@ -80,6 +80,12 @@ class Activity extends Component {
     return (
       <div className="App">
         <h1>Activity</h1>
+        <p className="intro" style={{ marginBottom: '10px' }}>
+          The activity charts can give you a good idea about the active Wow Classic Population.
+          Currently there is only census data from the Wow Classic Beta and stress test realms but
+          we aim to provide data from all the new realms that are coming when Classic launches as
+          well. You maybe need to select a specific time frame to get more meaningful results.
+        </p>
         {filterPanel}
         {activityStats === null ? (
           <div>Loading data</div>

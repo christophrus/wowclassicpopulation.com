@@ -119,7 +119,7 @@ const Contribute = () => {
     <div className="App">
       <h1>Data submission instructions</h1>
       <div className="box-wrapper normal">
-        <h2>How to gather census data</h2>
+        <h2>How to collect census data</h2>
         <ol>
           <li>
             Download the CensusPlusClassic addon from{' '}
@@ -152,7 +152,7 @@ const Contribute = () => {
             <strong>C:\Program Files\World of Warcraft\_classic_beta_\Interface\AddOns</strong>
           </li>
           <li>
-            When you log into the game the CensusPlusClassic addon automatically starts gathering
+            When you log into the game the CensusPlusClassic addon automatically starts collecting
             data. You can watch the progress through the minimap icon.
           </li>
           <li>

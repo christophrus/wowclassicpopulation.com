@@ -8,7 +8,7 @@ const About = () => {
       <div className="box-wrapper normal">
         <h2>What is the project about?</h2>
         <p>
-          I&apos;m currently gathering character data from the classic beta and stress test realms.
+          I&apos;m currently collecting character data from the classic beta and stress test realms.
           This data includes character name, realm, faction, race, class, level, guild and an
           activity snapshot that captures how many people were concurrently online at a specific
           time. This data is funneled into an online database, so that some fancy charts can be
@@ -18,14 +18,14 @@ const About = () => {
         <p>
           I have forked the client 7.3.5 version of CenusPlus and fixed it to work with the beta
           client. CenusPlus is an addon that automatically chains /who request in an intelligent
-          way, so that it can gather as much characters as possible that are currently online on a
+          way, so that it can collect as much characters as possible that are currently online on a
           realm. The addon saves all this data in a *.lua file that then can be uploaded on this
-          website where it gets merged with the gathered data of all other people.
+          website where it gets aggregated with the collected data of all other people.
         </p>
         <h2>Who made this website?</h2>
         <p>
-          Currently I&apos;m working alone on this project and I&apos;ve gathered the initial
-          character data samples by myself, but more and more people start gathering and submitting
+          Currently I&apos;m working alone on this project and I&apos;ve collected the initial
+          character data samples by myself, but more and more people start collecting and submitting
           data and I would really appreciate it if even more people would join, so that we can grow
           an adequate sample size.
         </p>
@@ -33,9 +33,9 @@ const About = () => {
         <p>
           I&apos;m a junior web developer and recently finished the{' '}
           <a href="https://learn.freecodecamp.org/">freeCodeCamp curriculum</a> and now using this
-          project to improve my coding skills and to gather some real world experience. Not to
-          mention that I absolutely love Vanilla WoW from back in the days and really hope that it
-          will be a great success. Anyways I was lucky enough to get access to the WoW: Classic beta
+          project to improve my coding skills and to get some real world experience. Not to mention
+          that I absolutely love Vanilla WoW from back in the days and really hope that it will be a
+          great success. Anyways I was lucky enough to get access to the WoW: Classic beta
           (specifically resubbed 1 month for a chance, LUL). Due to the lack of a working census
           addon and a website that could visualize it, I decided to start a project for this by
           myself.
@@ -54,7 +54,7 @@ const About = () => {
           If you have access to the beta or stress test, it is highly appriciated that you install
           the{' '}
           <a href="https://github.com/christophrus/CensusPlusClassic/releases">CensusPlus Addon</a>{' '}
-          and <Link to="./contribute">upload your gathered data</Link> to the website. Besides if
+          and <Link to="./contribute">upload your collected data</Link> to the website. Besides if
           you find any bugs or have some suggestions, feel free to join the project{' '}
           <a href="https://discord.gg/MYPWGkv">Discord</a> and post them there.
         </p>

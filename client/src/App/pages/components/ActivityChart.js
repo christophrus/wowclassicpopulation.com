@@ -59,7 +59,7 @@ const ActivityChart = props => {
           <p>No data found for this selection</p>
           <h2 className="highlight">Your help is wanted!</h2>
           <p>
-            If you&apos;re playing World of Warcraft: Classic {realmName} you could start gathering
+            If you&apos;re playing World of Warcraft: Classic {realmName} you could start collecting
             data and upload it to our database
           </p>
           <p>

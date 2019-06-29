@@ -138,7 +138,7 @@ const CharacterChart = props => {
           <h2 className="highlight">Your help is wanted!</h2>
           <p>
             If you&apos;re playing World of Warcraft: Classic {realmAndFaction} you could start
-            gathering data and upload it to our database
+            collecting data and upload it to our database
           </p>
           <p>
             Look at the <Link to="./contribute">Instructions</Link> if you need help getting it
