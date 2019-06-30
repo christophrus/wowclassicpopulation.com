@@ -13,4 +13,10 @@ const characterSchema = new Schema({
   lastSeen: { type: Date, required: true }
 });
 
-module.exports = mongoose.model('Character', characterSchema);
+characterSchema.index({ name: 1, realm: 1 }, { unique: true });
+characterSchema.index({ name: 1, realm: 1, level: 1, lastSeen: 1 });
+
+const Character = mongoose.model('Character', characterSchema);
+Character.init();
+
+module.exports = Character;

@@ -35,34 +35,51 @@ const censusData = async (censusDb, cb) => {
 
   // update db
   // first create the bulk queries
-  const characterBulk = parsedCharacters.map(character => ({
+  const charactersBulk = parsedCharacters.map(character => ({
     updateOne: {
-      filter: { realm: character.realm, name: character.name },
+      filter: {
+        name: character.name,
+        realm: character.realm,
+        $or: [{ lastSeen: { $lt: character.lastSeen } }, { level: { $lt: character.level } }]
+      },
       upsert: true,
       update: { ...character }
     }
   }));
 
+  // make the promise and allow the E11000 duplicate key error with catch and return the result, that we then can acces in .then()
+  // we get the E11000 error because of the unique compound index when the character level and lastSeen from the input is equal or lower then in the db
+  const charactersBulkWritePromise = Character.bulkWrite(charactersBulk, { ordered: false }).catch(
+    error => {
+      if (error.code === 11000) {
+        // we get that error because the document already exists and don't needs to be updated, so we can ignore this and proceed
+        return error.result;
+      }
+      throw error;
+    }
+  );
+
   const timesBulk = parsedTimes.map(time => ({
     updateOne: {
-      filter: { data: time.date, realm: time.realm, faction: time.faction },
+      filter: { date: time.date, realm: time.realm, faction: time.faction },
       upsert: true,
       update: { ...time }
     }
   }));
 
-  // second wait for both queries to finish and return stats
-  Promise.all([Character.bulkWrite(characterBulk), Time.bulkWrite(timesBulk)])
-    .then(([characters, times]) => {
+  const timesBulkWritePromise = Time.bulkWrite(timesBulk, { ordered: false });
+
+  // wait for both bulk operations to finish and return stats
+  Promise.all([charactersBulkWritePromise, timesBulkWritePromise])
+    .then(([charactersResult, timesResult]) => {
       const stats = {
         charStats: {
           processed: parsedCharacters.length,
-          inserted: characters.upsertedCount,
-          updated: characters.modifiedCount
+          inserted: charactersResult.nUpserted,
+          updated: charactersResult.nModified
         },
         timeStats: {
-          inserted: times.upsertedCount,
-          updated: times.modifiedCount
+          inserted: timesResult.nUpserted
         }
       };
       return cb(null, stats);

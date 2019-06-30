@@ -27,7 +27,7 @@ const charactersData = censusDb => {
               class: wclass,
               guild,
               level,
-              lastSeen
+              lastSeen: new Date(lastSeen)
             };
             flatCharArray.push(insertChar);
           });
