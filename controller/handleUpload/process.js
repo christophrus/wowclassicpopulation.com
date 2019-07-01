@@ -40,7 +40,7 @@ const censusData = async (censusDb, cb) => {
       filter: {
         name: character.name,
         realm: character.realm,
-        $or: [{ lastSeen: { $lt: character.lastSeen } }, { level: { $lt: character.level } }]
+        $or: [{ lastSeen: { $lte: character.lastSeen } }, { level: { $lte: character.level } }]
       },
       upsert: true,
       update: { ...character }
@@ -72,6 +72,7 @@ const censusData = async (censusDb, cb) => {
   // wait for both bulk operations to finish and return stats
   Promise.all([charactersBulkWritePromise, timesBulkWritePromise])
     .then(([charactersResult, timesResult]) => {
+      console.log(charactersResult);
       const stats = {
         charStats: {
           processed: parsedCharacters.length,

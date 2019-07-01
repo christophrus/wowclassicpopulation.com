@@ -10,6 +10,7 @@ const characterSchema = new Schema({
   race: { type: String, required: true, index: true },
   guild: { type: String, index: true },
   level: { type: Number, required: true, index: true },
+  sex: { type: Number, index: true },
   lastSeen: { type: Date, required: true }
 });
 

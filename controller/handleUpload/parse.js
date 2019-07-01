@@ -1,4 +1,7 @@
+/* eslint-disable no-restricted-properties */
 // filter methods
+const { StringHash } = require('./helper');
+
 const byDuplicateChars = (element, index, array) => {
   const foundIndex = array.findIndex(
     find => find.name === element.name && find.realm === element.realm
@@ -18,7 +21,7 @@ const charactersData = censusDb => {
       Object.entries(factionData).forEach(([race, raceData]) => {
         Object.entries(raceData).forEach(([wclass, wclassData]) => {
           Object.entries(wclassData).forEach(([char, charData]) => {
-            const [level, guild, , lastSeen] = charData;
+            const [level, guild, , lastSeen, hash, sex] = charData;
             const insertChar = {
               name: char,
               realm,
@@ -27,9 +30,20 @@ const charactersData = censusDb => {
               class: wclass,
               guild,
               level,
+              sex,
               lastSeen: new Date(lastSeen)
             };
             flatCharArray.push(insertChar);
+            if (hash) {
+              if (
+                hash ===
+                StringHash(realm + faction + race + wclass + char + level + guild + lastSeen + sex)
+              ) {
+                // console.log(char, true);
+              } else {
+                // console.log(char, false);
+              }
+            }
           });
         });
       });
@@ -48,37 +62,23 @@ const timesData = censusDb => {
   Object.entries(censusDb.TimesPlus).forEach(([realm, realmData]) => {
     Object.entries(realmData).forEach(([faction, factionData]) => {
       Object.entries(factionData).forEach(([time, timeValue]) => {
-        const [
-          druid,
-          hunter,
-          mage,
-          priest,
-          rogue,
-          warlock,
-          warrior,
-          shaman,
-          paladin
-        ] = timeValue.split('&');
-        const onlineByClass = {
-          druid,
-          hunter,
-          mage,
-          priest,
-          rogue,
-          warlock,
-          warrior,
-          shaman,
-          paladin
-        };
-        const onlineTotal = timeValue.split('&').reduce((acc, current) => acc + Number(current), 0);
+        const [times, hash] = timeValue.split(':');
+
+        if (hash) {
+          if (Number(hash) === StringHash(times + realm + faction + time)) {
+            // console.log(time, true);
+          } else {
+            // console.log(time, false);
+          }
+        }
+
+        // eslint-disable-next-line prettier/prettier
+        const [druid, hunter, mage, priest, rogue, warlock, warrior, shaman, paladin] = times.split('&');
+        // eslint-disable-next-line prettier/prettier
+        const onlineByClass = { druid, hunter, mage, priest, rogue, warlock, warrior, shaman, paladin };
+        const onlineTotal = times.split('&').reduce((acc, current) => acc + Number(current), 0);
         const date = new Date(`${time.replace('&', ' ')} UTC`);
-        flatTimesArray.push({
-          date,
-          realm,
-          faction,
-          onlineByClass,
-          onlineTotal
-        });
+        flatTimesArray.push({ date, realm, faction, onlineByClass, onlineTotal });
       });
     });
   });
