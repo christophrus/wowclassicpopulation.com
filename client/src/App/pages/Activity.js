@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import LineChartFilterForm from './components/LineChartFilterForm';
 import getRealmList from './helper/getRealmList';
 import ActivityChart from './components/ActivityChart';
@@ -77,15 +78,21 @@ class Activity extends Component {
       );
     }
 
+    const description =
+      'Realm activity gives an overview about the active players concurrently online on Wow Classic realms in chart form';
+    const title = 'Population activity overview - Wow Classic population census project';
+
     return (
       <div className="App">
+        <Helmet>
+          <meta name="description" content={description} />
+          <meta name="twitter:description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta property="og:title" content={title} />
+          <meta name="twitter:title" content={title} />
+          <title>{title}</title>
+        </Helmet>
         <h1>Activity</h1>
-        <p className="intro" style={{ marginBottom: '10px' }}>
-          The activity charts can give you a good idea about the active Wow Classic Population.
-          Currently there is only census data from the Wow Classic Beta and stress test realms but
-          we aim to provide data from all the new realms that are coming when Classic launches as
-          well. You maybe need to select a specific time frame to get more meaningful results.
-        </p>
         {filterPanel}
         {activityStats === null ? (
           <div>Loading data</div>
@@ -97,6 +104,12 @@ class Activity extends Component {
             activityStats={activityStats}
           />
         )}
+        <p className="intro" style={{ marginTop: '10px' }}>
+          The activity charts can give you a good idea about the active Wow Classic Population.
+          Currently there is only census data from the Wow Classic Beta and stress test realms but
+          we aim to provide data from all the new realms that are coming when Classic launches as
+          well. You maybe need to select a specific time frame to get more meaningful results.
+        </p>
       </div>
     );
   }

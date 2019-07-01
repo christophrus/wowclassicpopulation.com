@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { Helmet } from 'react-helmet';
 import PieChart from './components/PieChart';
 import useWindowDimensions from './hooks/useWindowDimensions';
 
@@ -40,8 +41,20 @@ const Home = () => {
     );
   }
 
+  const description =
+    'A project with the goal to take a full census of active players on all World of Warcraft: Classic realms';
+  const title = '>Wow Classic Population - A census project';
+
   return (
     <div className="App">
+      <Helmet>
+        <meta name="description" content={description} />
+        <meta name="twitter:description" content={description} />
+        <meta property="og:description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta name="twitter:title" content={title} />
+        <title>{title}</title>
+      </Helmet>
       <h1>Wow Classic Population - A census project</h1>
       <p className="intro">
         We are collecting census data from the World of Warcraft: Classic realms (currently beta

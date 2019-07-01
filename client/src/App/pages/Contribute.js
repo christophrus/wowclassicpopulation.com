@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { Helmet } from 'react-helmet';
 import Spinner from './components/Spinner';
 
 const useStyles = makeStyles(theme => ({
@@ -115,8 +116,20 @@ const Contribute = () => {
     );
   }
 
+  const description =
+    'How to upload census data to the Wow Classic population census project and how to install the CensusPlusClassic addon.';
+  const title = 'How to contribute to the Wow Classic population census project';
+
   return (
     <div className="App">
+      <Helmet>
+        <meta name="description" content={description} />
+        <meta name="twitter:description" content={description} />
+        <meta property="og:description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta name="twitter:title" content={title} />
+        <title>{title}</title>
+      </Helmet>
       <h1>Data submission instructions</h1>
       <div className="box-wrapper normal">
         <h2>How to collect census data</h2>
