@@ -132,13 +132,13 @@ export default function FilterForm({ realmOptions, onChange }) {
       setSelectedDateFrom('');
       setSelectedDateTo('');
     } else if (preset === 'allStressTest') {
-      const stress2Index = realmOptions.findIndex(find => find.value === '0002_classic_realm_2');
+      const stress2Index = realmOptions.findIndex(find => find.value === '9902_classic_realm_2');
       const stress2Obj = realmOptions[stress2Index];
-      const stress3Index = realmOptions.findIndex(find => find.value === '0003_classic_realm_3');
+      const stress3Index = realmOptions.findIndex(find => find.value === '9903_classic_realm_3');
       const stress3Obj = realmOptions[stress3Index];
-      const stress12Index = realmOptions.findIndex(find => find.value === '0012_classic_realm_12');
+      const stress12Index = realmOptions.findIndex(find => find.value === '9912_classic_realm_12');
       const stress12Obj = realmOptions[stress12Index];
-      const stress15Index = realmOptions.findIndex(find => find.value === '0015_classic_realm_15');
+      const stress15Index = realmOptions.findIndex(find => find.value === '9915_classic_realm_15');
       const stress15Obj = realmOptions[stress15Index];
       setSelectedRealm([stress2Obj, stress3Obj, stress12Obj, stress15Obj]);
       setSelectedDateFrom('');
