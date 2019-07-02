@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,9 +61,9 @@ const CharacterChart = props => {
   const { realms, factions, races, classes, levels } = characterStats;
 
   if (realms.length === 1) {
-    realmLabel = realms[0].name;
+    realmLabel = realms[0].name.match(/_(.*)/)[1];
   } else if (realmOptions && realms.length < realmOptions.length) {
-    realmLabel = realms.map(realm => realm.name).join(', ');
+    realmLabel = realms.map(realm => realm.name.match(/_(.*)/)[1]).join(', ');
   }
   if (factions.length === 1) {
     factionLabel = factions[0].name;

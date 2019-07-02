@@ -3,7 +3,8 @@ const selectMapper = data => {
     value: String(element)
       .toLowerCase()
       .replace(/\s/g, '_'),
-    label: element
+    label: element,
+    labelClean: element.match(/_(.*)/)[1]
   }));
 };
 

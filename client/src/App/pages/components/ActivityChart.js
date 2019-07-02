@@ -24,9 +24,13 @@ const ActivityChart = props => {
   let headline = 'All realms';
   if (Object.prototype.hasOwnProperty.call(query, 'realm')) {
     if (Array.isArray(query.realm)) {
-      headline = query.realm.length > 0 ? query.realm.join(', ') : headline;
+      headline =
+        query.realm.length > 0
+          ? query.realm.map(realm => realm.match(/_(.*)/)[1]).join(', ')
+          : headline;
     } else {
-      headline = query.realm;
+      // eslint-disable-next-line prefer-destructuring
+      headline = query.realm.element.match(/_(.*)/)[1];
     }
   }
 

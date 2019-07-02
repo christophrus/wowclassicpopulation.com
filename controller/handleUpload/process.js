@@ -72,7 +72,6 @@ const censusData = async (censusDb, cb) => {
   // wait for both bulk operations to finish and return stats
   Promise.all([charactersBulkWritePromise, timesBulkWritePromise])
     .then(([charactersResult, timesResult]) => {
-      console.log(charactersResult);
       const stats = {
         charStats: {
           processed: parsedCharacters.length,

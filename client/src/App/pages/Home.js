@@ -26,7 +26,7 @@ const Home = () => {
   });
 
   let FactionPieChart = <div>Baking a pie ...</div>;
-  if (quickStats) {
+  if (quickStats && quickStats.factions.length > 0) {
     let pieDimensions = 400;
     if (width < 500) {
       pieDimensions = width * 0.8;

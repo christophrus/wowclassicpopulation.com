@@ -175,9 +175,9 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
   function handlePreset(event) {
     const preset = event.target.name;
     if (preset === 'bothBetaRealms40') {
-      const pveIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pve');
+      const pveIndex = realmOptions.findIndex(find => find.value === '4618_classic_beta_pve');
       const pveObj = realmOptions[pveIndex];
-      const pvpIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pvp');
+      const pvpIndex = realmOptions.findIndex(find => find.value === '4619_classic_beta_pvp');
       const pvpObj = realmOptions[pvpIndex];
       setSelectedRealm([pveObj, pvpObj]);
       handleFactionChange({ target: { value: '' } });
@@ -185,7 +185,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
       setSelectedRace([]);
       setSelectedLevel([40, 40]);
     } else if (preset === 'pvpOnly40') {
-      const pvpIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pvp');
+      const pvpIndex = realmOptions.findIndex(find => find.value === '4619_classic_beta_pvp');
       const pvpObj = realmOptions[pvpIndex];
       setSelectedRealm([pvpObj]);
       handleFactionChange({ target: { value: '' } });
@@ -193,7 +193,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
       setSelectedClass([]);
       setSelectedLevel([40, 40]);
     } else if (preset === 'pveOnly40') {
-      const pveIndex = realmOptions.findIndex(find => find.value === 'classic_beta_pve');
+      const pveIndex = realmOptions.findIndex(find => find.value === '4618_classic_beta_pve');
       const pveObj = realmOptions[pveIndex];
       setSelectedRealm([pveObj]);
       handleFactionChange({ target: { value: '' } });
@@ -201,13 +201,13 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
       setSelectedClass([]);
       setSelectedLevel([40, 40]);
     } else if (preset === 'allStress15') {
-      const stress2Index = realmOptions.findIndex(find => find.value === 'classic_realm_2');
+      const stress2Index = realmOptions.findIndex(find => find.value === '0002_classic_realm_2');
       const stress2Obj = realmOptions[stress2Index];
-      const stress3Index = realmOptions.findIndex(find => find.value === 'classic_realm_3');
+      const stress3Index = realmOptions.findIndex(find => find.value === '0003_classic_realm_3');
       const stress3Obj = realmOptions[stress3Index];
-      const stress12Index = realmOptions.findIndex(find => find.value === 'classic_realm_12');
+      const stress12Index = realmOptions.findIndex(find => find.value === '0012_classic_realm_12');
       const stress12Obj = realmOptions[stress12Index];
-      const stress15Index = realmOptions.findIndex(find => find.value === 'classic_realm_15');
+      const stress15Index = realmOptions.findIndex(find => find.value === '0015_classic_realm_15');
       const stress15Obj = realmOptions[stress15Index];
       setSelectedRealm([stress2Obj, stress3Obj, stress12Obj, stress15Obj]);
       handleFactionChange({ target: { value: '' } });
@@ -215,7 +215,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
       setSelectedClass([]);
       setSelectedLevel([15, 15]);
     } else if (preset === 'alterac') {
-      const alteracIndex = realmOptions.findIndex(find => find.value === 'field_of_strife');
+      const alteracIndex = realmOptions.findIndex(find => find.value === '4620_field_of_strife');
       const alteracObj = realmOptions[alteracIndex];
       setSelectedRealm([alteracObj]);
       handleFactionChange({ target: { value: '' } });
@@ -263,14 +263,14 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
               multiple
               value={selectedRealm}
               onChange={handleRealmChange}
-              renderValue={selected => selected.map(element => element.label).join(', ')}
+              renderValue={selected => selected.map(element => element.labelClean).join(', ')}
               input={<Input id="realm-filter" name="realm" />}
               MenuProps={MenuProps}
             >
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
                   <Checkbox checked={selectedRealm.indexOf(element) > -1} />
-                  <ListItemText primary={element.label} />
+                  <ListItemText primary={element.labelClean} />
                 </MenuItem>
               ))}
             </Select>

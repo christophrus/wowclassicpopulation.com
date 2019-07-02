@@ -22,6 +22,22 @@ const charactersData = censusDb => {
         Object.entries(raceData).forEach(([wclass, wclassData]) => {
           Object.entries(wclassData).forEach(([char, charData]) => {
             const [level, guild, , lastSeen, hash, sex] = charData;
+            if (hash) {
+              const checkHash =
+                hash ===
+                StringHash(realm + faction + race + wclass + char + level + guild + lastSeen + sex);
+              console.log(char, checkHash);
+            }
+
+            // temp fix
+            realm = realm === 'Classic Beta PvE' ? '4618_Classic Beta PvE' : realm;
+            realm = realm === 'Classic Beta PvP' ? '4619_Classic Beta PvP' : realm;
+            realm = realm === 'Field of Strife' ? '4620_Field of Strife' : realm;
+            realm = realm === 'Classic Realm 2' ? '0002_Classic Realm 2' : realm;
+            realm = realm === 'Classic Realm 3' ? '0003_Classic Realm 3' : realm;
+            realm = realm === 'Classic Realm 12' ? '0012_Classic Realm 12' : realm;
+            realm = realm === 'Classic Realm 15' ? '0015_Classic Realm 15' : realm;
+
             const insertChar = {
               name: char,
               realm,
@@ -34,16 +50,6 @@ const charactersData = censusDb => {
               lastSeen: new Date(lastSeen)
             };
             flatCharArray.push(insertChar);
-            if (hash) {
-              if (
-                hash ===
-                StringHash(realm + faction + race + wclass + char + level + guild + lastSeen + sex)
-              ) {
-                // console.log(char, true);
-              } else {
-                // console.log(char, false);
-              }
-            }
           });
         });
       });
@@ -65,12 +71,18 @@ const timesData = censusDb => {
         const [times, hash] = timeValue.split(':');
 
         if (hash) {
-          if (Number(hash) === StringHash(times + realm + faction + time)) {
-            // console.log(time, true);
-          } else {
-            // console.log(time, false);
-          }
+          const checkHash = Number(hash) === StringHash(times + realm + faction + time);
+          console.log(time, checkHash);
         }
+
+        // temp fix
+        realm = realm === 'Classic Beta PvE' ? '4618_Classic Beta PvE' : realm;
+        realm = realm === 'Classic Beta PvP' ? '4619_Classic Beta PvP' : realm;
+        realm = realm === 'Field of Strife' ? '4620_Field of Strife' : realm;
+        realm = realm === 'Classic Realm 2' ? '0002_Classic Realm 2' : realm;
+        realm = realm === 'Classic Realm 3' ? '0003_Classic Realm 3' : realm;
+        realm = realm === 'Classic Realm 12' ? '0012_Classic Realm 12' : realm;
+        realm = realm === 'Classic Realm 15' ? '0015_Classic Realm 15' : realm;
 
         // eslint-disable-next-line prettier/prettier
         const [druid, hunter, mage, priest, rogue, warlock, warrior, shaman, paladin] = times.split('&');
