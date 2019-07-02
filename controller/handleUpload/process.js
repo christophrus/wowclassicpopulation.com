@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const JSZip = require('jszip');
-const util = require('util');
 const Character = require('../../models/Character');
 const Time = require('../../models/Time');
 const parse = require('./parse');
@@ -48,8 +47,6 @@ const censusData = async (censusDb, cb) => {
       update: { ...character }
     }
   }));
-
-  console.log(util.inspect(charactersBulk, false, null, true /* enable colors */));
 
   // make the promise and allow the E11000 duplicate key error with catch and return the result, that we then can acces in .then()
   // we get the E11000 error because of the unique compound index when the character level and lastSeen from the input is equal or lower then in the db
