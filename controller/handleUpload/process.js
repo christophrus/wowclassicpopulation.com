@@ -64,6 +64,7 @@ const censusData = async (censusDb, cb) => {
           inserted: timesResult.nUpserted
         }
       };
+      console.log('chars:', stats.charStats, 'times:', stats.timeStats);
       return cb(null, stats);
     })
     .catch(error => {
