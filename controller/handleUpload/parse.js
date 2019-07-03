@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-properties */
 // filter methods
 const { StringHash } = require('./helper');
@@ -23,10 +24,12 @@ const charactersData = censusDb => {
           Object.entries(wclassData).forEach(([char, charData]) => {
             const [level, guild, , lastSeen, hash, sex] = charData;
             if (hash) {
-              const checkHash =
-                hash ===
-                StringHash(realm + faction + race + wclass + char + level + guild + lastSeen + sex);
-              console.log(char, checkHash);
+              const checkString =
+                realm + faction + race + wclass + char + level + guild + lastSeen + sex;
+              const checkHash = StringHash(checkString);
+              if (Number(hash) !== checkHash) {
+                console.log('manipulated?', char, hash, checkHash, checkString);
+              }
             }
 
             // temp fix
@@ -71,8 +74,11 @@ const timesData = censusDb => {
         const [times, hash] = timeValue.split(':');
 
         if (hash) {
-          const checkHash = Number(hash) === StringHash(times + realm + faction + time);
-          console.log(time, checkHash);
+          const checkString = times + realm + faction + time;
+          const checkHash = StringHash(checkString);
+          if (Number(hash) !== checkHash) {
+            console.log('manipulated?', time, hash, checkHash, checkString);
+          }
         }
 
         // temp fix

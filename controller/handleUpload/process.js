@@ -1,6 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-const JSZip = require('jszip');
 const Character = require('../../models/Character');
 const Time = require('../../models/Time');
 const parse = require('./parse');
@@ -16,22 +13,6 @@ const censusData = async (censusDb, cb) => {
   } catch (error) {
     cb({ status: 400, message: 'Parsing error - imvaid times/character format', trace: error });
   }
-
-  // write backup to fs
-  const jsonData = JSON.stringify({ parsedTimes, parsedCharacters }, null, 2);
-  const jsonPath = path.join('/storage/', `${+new Date()}.zip`);
-  const zip = new JSZip();
-  zip.file('data.json', jsonData);
-  zip
-    .generateNodeStream({
-      type: 'nodebuffer',
-      streamFiles: true,
-      compression: 'DEFLATE',
-      compressionOptions: {
-        level: 9
-      }
-    })
-    .pipe(fs.createWriteStream(jsonPath));
 
   // update db
   // first create the bulk queries
