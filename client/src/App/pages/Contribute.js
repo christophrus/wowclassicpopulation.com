@@ -9,6 +9,11 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { Helmet } from 'react-helmet';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Spinner from './components/Spinner';
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +35,8 @@ const Contribute = () => {
   const [isUploadFinished, setIsUploadFinished] = React.useState(false);
   const [uploadResult, setUploadResult] = React.useState({});
   const [error, setError] = React.useState(false);
+  const [isDialogOpen, setDialogOpen] = React.useState(false);
+  const [addonVersion, setAddonVersion] = React.useState(false);
 
   const sendRequest = (file, cb) => {
     const xhr = new window.XMLHttpRequest();
@@ -56,6 +63,10 @@ const Contribute = () => {
       if (json.hasOwnProperty('error')) {
         setError(json.error);
         return;
+      }
+      if (json.updateDialog) {
+        setDialogOpen(true);
+        setAddonVersion(json.updateDialog);
       }
       setUploadResult(json);
       setIsUploadFinished(true);
@@ -116,6 +127,10 @@ const Contribute = () => {
     );
   }
 
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   const description =
     'How to upload census data to the Wow Classic population census project and how to install the CensusPlusClassic addon.';
   const title = 'How to contribute to the Wow Classic population census project';
@@ -130,6 +145,30 @@ const Contribute = () => {
         <meta name="twitter:title" content={title} />
         <title>{title}</title>
       </Helmet>
+      <Dialog
+        open={isDialogOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Outdated addon version detected</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Your are using an outdated version of the CensusPlusClassic addon. Uploads from outdated
+            versions are going to be rejected by the API in near future, so make sure to upgrade to
+            the latest{' '}
+            <a href="https://github.com/christophrus/CensusPlusClassic/releases" target="blank">
+              CensusPlusClassic v{addonVersion}
+            </a>{' '}
+            soon.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
       <h1>Data submission instructions</h1>
       <div className="box-wrapper normal">
         <h2>How to collect census data</h2>

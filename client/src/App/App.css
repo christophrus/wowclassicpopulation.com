@@ -251,3 +251,12 @@ footer {
     font-size: 8px;
   }
 }
+
+#alert-dialog-description a {
+  color: rgb(224, 52, 52);
+  text-decoration: none;
+}
+
+#alert-dialog-description a:hover {
+  color: rgb(128, 28, 28);
+}

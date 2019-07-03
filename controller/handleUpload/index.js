@@ -5,6 +5,7 @@ const luaToJson = require('lua-to-json');
 const process = require('./process');
 
 module.exports = (uploadPath, cb) => {
+  const currentAddonVersion = '0.4.0';
   let data;
 
   // read uploaded file
@@ -38,13 +39,16 @@ module.exports = (uploadPath, cb) => {
     return cb({ status: 400, message: 'Parse error - Unknown file format', trace: error });
   }
 
+  const updateDialog = censusDb.Info.LogVer !== currentAddonVersion ? currentAddonVersion : false;
   console.log(`Log uploaded: v${censusDb.Info.LogVer}`);
 
   // process the uploaded data
   process.censusData(censusDb, (error, stats) => {
     if (error) return cb(error);
     if (stats) {
-      return cb(null, stats);
+      const retStats = { ...stats };
+      retStats.updateDialog = updateDialog;
+      return cb(null, retStats);
     }
     return undefined;
   });
