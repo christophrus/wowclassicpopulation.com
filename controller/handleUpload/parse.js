@@ -29,6 +29,7 @@ const charactersData = censusDb => {
               const checkHash = StringHash(checkString);
               if (Number(hash) !== checkHash) {
                 console.log('manipulated?', char, hash, checkHash, checkString);
+                return;
               }
             }
 
@@ -78,6 +79,7 @@ const timesData = censusDb => {
           const checkHash = StringHash(checkString);
           if (Number(hash) !== checkHash) {
             console.log('manipulated?', time, hash, checkHash, checkString);
+            return;
           }
         }
 
