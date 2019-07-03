@@ -38,6 +38,8 @@ module.exports = (uploadPath, cb) => {
     return cb({ status: 400, message: 'Parse error - Unknown file format', trace: error });
   }
 
+  console.log(`Log uploaded: v${censusDb.Info.LogVer}`);
+
   // process the uploaded data
   process.censusData(censusDb, (error, stats) => {
     if (error) return cb(error);
