@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-properties */
 // filter methods
 const { StringHash } = require('./helper');
+const locale = require('./locale');
 
 const byDuplicateChars = (element, index, array) => {
   const foundIndex = array.findIndex(
@@ -19,18 +20,34 @@ const charactersData = censusDb => {
   let flatCharArray = [];
   Object.entries(censusDb.Servers).forEach(([realm, realmData]) => {
     Object.entries(realmData).forEach(([faction, factionData]) => {
-      Object.entries(factionData).forEach(([race, raceData]) => {
-        Object.entries(raceData).forEach(([wclass, wclassData]) => {
+      Object.entries(factionData).forEach(([localizedRace, raceData]) => {
+        Object.entries(raceData).forEach(([localizedClass, wclassData]) => {
           Object.entries(wclassData).forEach(([char, charData]) => {
             const [level, guild, , lastSeen, hash, sex] = charData;
+
             if (hash) {
               const checkString =
-                realm + faction + race + wclass + char + level + guild + lastSeen + sex;
+                realm +
+                faction +
+                localizedRace +
+                localizedClass +
+                char +
+                level +
+                guild +
+                lastSeen +
+                sex;
               const checkHash = StringHash(checkString);
               if (Number(hash) !== checkHash) {
                 console.log('manipulated?', char, hash, checkHash, checkString);
                 return;
               }
+            }
+
+            const race = locale.get_enUS(localizedRace);
+            const wclass = locale.get_enUS(localizedClass);
+
+            if (!race || !wclass) {
+              return;
             }
 
             // temp fix
