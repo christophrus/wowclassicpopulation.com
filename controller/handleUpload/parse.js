@@ -23,7 +23,7 @@ const charactersData = censusDb => {
       Object.entries(factionData).forEach(([localizedRace, raceData]) => {
         Object.entries(raceData).forEach(([localizedClass, wclassData]) => {
           Object.entries(wclassData).forEach(([char, charData]) => {
-            const [level, guild, , lastSeen, hash, sex] = charData;
+            const [level, guild, lastSeen, hash, sex] = charData;
 
             if (hash) {
               const checkString =
