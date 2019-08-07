@@ -39,15 +39,30 @@ module.exports = (uploadPath, cb) => {
     return cb({ status: 400, message: 'Parse error - Unknown file format', trace: error });
   }
 
-  const updateDialog = censusDb.Info.LogVer !== currentAddonVersion ? currentAddonVersion : false;
   console.log(`Log uploaded: v${censusDb.Info.LogVer}`);
+
+  if (censusDb.Info.LogVer !== currentAddonVersion) {
+    const emptyStats = {
+      charStats: {
+        processed: 0,
+        inserted: 0,
+        updated: 0
+      },
+      timeStats: {
+        inserted: 0
+      },
+      updateDialog: currentAddonVersion
+    };
+
+    return cb(null, emptyStats);
+  }
 
   // process the uploaded data
   process.censusData(censusDb, (error, stats) => {
     if (error) return cb(error);
     if (stats) {
       const retStats = { ...stats };
-      retStats.updateDialog = updateDialog;
+      retStats.updateDialog = false;
       return cb(null, retStats);
     }
     return undefined;

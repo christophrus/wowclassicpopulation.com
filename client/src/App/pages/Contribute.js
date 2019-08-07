@@ -154,13 +154,12 @@ const Contribute = () => {
         <DialogTitle id="alert-dialog-title">Outdated addon version detected</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Your are using an outdated version of the CensusPlusClassic addon. However, your data
-            was still processed this time, but uploads from outdated versions are going to be
-            rejected by the API in near future, so make sure to upgrade to the latest{' '}
+            Your are using an outdated version of the CensusPlusClassic addon. Please upgrade to the
+            latest{' '}
             <a href="https://github.com/christophrus/CensusPlusClassic/releases" target="blank">
               CensusPlusClassic v{addonVersion}
             </a>{' '}
-            soon.
+            and try again.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
