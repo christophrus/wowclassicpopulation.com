@@ -19,18 +19,21 @@ module.exports = (uploadPath, cb) => {
   const filename = +new Date();
   const jsonPath = path.join('/storage/', `${filename}.zip`);
   const zip = new JSZip();
-  zip.file(`${filename}.lua`, data);
-  zip
-    .generateNodeStream({
-      type: 'nodebuffer',
-      streamFiles: true,
-      compression: 'DEFLATE',
-      compressionOptions: {
-        level: 9
-      }
-    })
-    .pipe(fs.createWriteStream(jsonPath));
-
+  try {
+    zip.file(`${filename}.lua`, data);
+    zip
+      .generateNodeStream({
+        type: 'nodebuffer',
+        streamFiles: true,
+        compression: 'DEFLATE',
+        compressionOptions: {
+          level: 9
+        }
+      })
+      .pipe(fs.createWriteStream(jsonPath));
+  } catch (error) {
+    return cb({ status: 400, message: 'Upload Error', trace: error });
+  }
   // parse lua table to a json
   let censusDb;
   try {
