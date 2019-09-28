@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
   const errCode = err.status || 500;
   const errMessage = err.message || 'Internal Server Error';
 
-  res.status(errCode).json({ error: errMessage });
+  res.json({ error: errMessage });
 });
 
 const port = process.env.PORT || 5000;
