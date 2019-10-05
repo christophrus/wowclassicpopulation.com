@@ -44,7 +44,7 @@ module.exports = (uploadPath, cb) => {
 
   console.log(`Log uploaded: v${censusDb.Info.LogVer}`);
 
-  if (censusDb.Info.LogVer !== currentAddonVersion) {
+  if (censusDb.Info.LogVer !== currentAddonVersion || censusDb.Info.LogVer !== '0.8.0') {
     const emptyStats = {
       charStats: {
         processed: 0,
