@@ -6,6 +6,7 @@ const process = require('./process');
 
 module.exports = (uploadPath, cb) => {
   const currentAddonVersion = '0.7.0';
+  const validVersions = [currentAddonVersion, '0.8.0'];
   let data;
 
   // read uploaded file
@@ -44,7 +45,7 @@ module.exports = (uploadPath, cb) => {
 
   console.log(`Log uploaded: v${censusDb.Info.LogVer}`);
 
-  if (censusDb.Info.LogVer !== currentAddonVersion || censusDb.Info.LogVer !== '0.8.0') {
+  if (!validVersions.includes(censusDb.Info.LogVer)) {
     const emptyStats = {
       charStats: {
         processed: 0,
