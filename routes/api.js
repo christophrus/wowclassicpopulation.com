@@ -13,6 +13,8 @@ router.post('/upload', (req, res, next) => {
         }
         return res.json(data);
       });
+    } else {
+      return next({ status: 400, message: 'Upload Error' });
     }
   }
 });
