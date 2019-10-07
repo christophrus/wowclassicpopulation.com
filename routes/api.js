@@ -6,12 +6,14 @@ const router = express.Router();
 router.post('/upload', (req, res, next) => {
   if (req.files) {
     const { path } = req.files.file;
-    controller.handleUpload(path, (err, data) => {
-      if (err) {
-        return next(err);
-      }
-      return res.json(data);
-    });
+    if (path) {
+      controller.handleUpload(path, (err, data) => {
+        if (err) {
+          return next(err);
+        }
+        return res.json(data);
+      });
+    }
   }
 });
 
