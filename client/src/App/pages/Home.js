@@ -57,9 +57,8 @@ const Home = () => {
       </Helmet>
       <h1>Wow Classic Population - A census project</h1>
       <p className="intro">
-        We are collecting census data from the World of Warcraft: Classic realms (currently beta
-        &amp; stress tests) with the help of an ingame addon and visualizes it in some fancy,
-        filterable charts.
+        We are collecting census data from the World of Warcraft: Classic realms with the help of an
+        ingame addon and visualizes it in some fancy, filterable charts.
       </p>
       <div className="box-wrapper normal">
         {FactionPieChart}

@@ -8,11 +8,11 @@ const About = () => {
       <div className="box-wrapper normal">
         <h2>What is the project about?</h2>
         <p>
-          I&apos;m currently collecting character data from the classic beta and stress test realms.
-          This data includes character name, realm, faction, race, class, level, guild and an
-          activity snapshot that captures how many people were concurrently online at a specific
-          time. This data is funneled into an online database, so that some fancy charts can be
-          generated out of it so that everyone can have an easy look on it.
+          I&apos;m collecting character data from the WoW Classic realms. This data includes
+          character name, realm, faction, race, class, level, guild and an activity snapshot that
+          captures how many people were concurrently online at a specific time. This data is
+          funneled into an online database, so that some fancy charts can be generated out of it so
+          that everyone can have an easy look on it.
         </p>
         <h2>How did you get the numbers?</h2>
         <p>

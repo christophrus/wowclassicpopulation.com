@@ -198,9 +198,9 @@ const Contribute = () => {
             and extract the CensusPlusClassic folder to your addons directory
           </li>
           <li>
-            The beta addon directory is usually located here:
+            The addon directory is usually located here:
             <br />
-            <strong>C:\Program Files\World of Warcraft\_classic_beta_\Interface\AddOns</strong>
+            <strong>C:\Program Files\World of Warcraft\_classic_\Interface\AddOns</strong>
           </li>
           <li>
             When you log into the game the CensusPlusClassic addon automatically starts collecting
@@ -213,8 +213,7 @@ const Contribute = () => {
           <li>
             Navigate to{' '}
             <strong>
-              C:\Program Files\World of
-              Warcraft\_classic_beta_\WTF\Account\1234567#1\SavedVariables\
+              C:\Program Files\World of Warcraft\_classic_\WTF\Account\1234567#1\SavedVariables\
             </strong>{' '}
             and find the <strong>CensusPlusClassic.lua</strong>{' '}
             <em>(1234567#1 is a different number for you or your account name)</em>

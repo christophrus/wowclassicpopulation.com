@@ -172,90 +172,9 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
     onChange(query);
   }
 
-  function handlePreset(event) {
-    const preset = event.target.name;
-    if (preset === 'bothBetaRealms40') {
-      const pveIndex = realmOptions.findIndex(find => find.value === '4618_classic_beta_pve');
-      const pveObj = realmOptions[pveIndex];
-      const pvpIndex = realmOptions.findIndex(find => find.value === '4619_classic_beta_pvp');
-      const pvpObj = realmOptions[pvpIndex];
-      setSelectedRealm([pveObj, pvpObj]);
-      handleFactionChange({ target: { value: '' } });
-      setSelectedClass([]);
-      setSelectedRace([]);
-      setSelectedLevel([40, 40]);
-    } else if (preset === 'pvpOnly40') {
-      const pvpIndex = realmOptions.findIndex(find => find.value === '4619_classic_beta_pvp');
-      const pvpObj = realmOptions[pvpIndex];
-      setSelectedRealm([pvpObj]);
-      handleFactionChange({ target: { value: '' } });
-      setSelectedRace([]);
-      setSelectedClass([]);
-      setSelectedLevel([40, 40]);
-    } else if (preset === 'pveOnly40') {
-      const pveIndex = realmOptions.findIndex(find => find.value === '4618_classic_beta_pve');
-      const pveObj = realmOptions[pveIndex];
-      setSelectedRealm([pveObj]);
-      handleFactionChange({ target: { value: '' } });
-      setSelectedRace([]);
-      setSelectedClass([]);
-      setSelectedLevel([40, 40]);
-    } else if (preset === 'allStress15') {
-      const stress2Index = realmOptions.findIndex(find => find.value === '9902_classic_realm_2');
-      const stress2Obj = realmOptions[stress2Index];
-      const stress3Index = realmOptions.findIndex(find => find.value === '9903_classic_realm_3');
-      const stress3Obj = realmOptions[stress3Index];
-      const stress12Index = realmOptions.findIndex(find => find.value === '9912_classic_realm_12');
-      const stress12Obj = realmOptions[stress12Index];
-      const stress15Index = realmOptions.findIndex(find => find.value === '9915_classic_realm_15');
-      const stress15Obj = realmOptions[stress15Index];
-      setSelectedRealm([stress2Obj, stress3Obj, stress12Obj, stress15Obj]);
-      handleFactionChange({ target: { value: '' } });
-      setSelectedRace([]);
-      setSelectedClass([]);
-      setSelectedLevel([15, 15]);
-    } else if (preset === 'alterac') {
-      const alteracIndex = realmOptions.findIndex(find => find.value === '4620_field_of_strife');
-      const alteracObj = realmOptions[alteracIndex];
-      setSelectedRealm([alteracObj]);
-      handleFactionChange({ target: { value: '' } });
-      setSelectedRace([]);
-      setSelectedClass([]);
-      setSelectedLevel([58, 58]);
-    }
-  }
-
   return (
     <form className={classes.root} autoComplete="off">
       <div className="form-wrapper box-wrapper filter-form">
-        <p>Filter presets you may find interesting</p>
-        <ul>
-          <li>
-            <button type="button" className="list" name="bothBetaRealms40" onClick={handlePreset}>
-              Both beta realms - Level 40
-            </button>
-          </li>
-          <li>
-            <button type="button" className="list" name="pvpOnly40" onClick={handlePreset}>
-              Beta PvP - Level 40
-            </button>
-          </li>
-          <li>
-            <button type="button" className="list" name="pveOnly40" onClick={handlePreset}>
-              Beta PvE - Level 40
-            </button>
-          </li>
-          <li>
-            <button type="button" className="list" name="allStress15" onClick={handlePreset}>
-              All stress test realms - Level 15
-            </button>
-          </li>
-          <li>
-            <button type="button" className="list" name="alterac" onClick={handlePreset}>
-              Alterac Valley Test - Level 58
-            </button>
-          </li>
-        </ul>
         <div>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
