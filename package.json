@@ -11,24 +11,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "d3": "^5.9.2",
+    "d3": "^5.12.0",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "formidable": "^1.2.1",
-    "jszip": "^3.2.1",
-    "lua-to-json": "christophrus/lua-to-json",
-    "mongoose": "^5.5.14"
+    "jszip": "^3.2.2",
+    "lua-to-json": "github:christophrus/lua-to-json",
+    "mongoose": "^5.7.3"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^5.0.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.13.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^5.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "prettier": "^1.18.2"
   }
 }
