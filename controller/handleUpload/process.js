@@ -49,7 +49,10 @@ const censusData = async (censusDb, cb) => {
     }
   }));
 
-  const timesBulkWritePromise = Time.bulkWrite(timesBulk, { ordered: false });
+  let timesBulkWritePromise;
+  if (timesBulk.length > 0) {
+    timesBulkWritePromise = Time.bulkWrite(timesBulk, { ordered: false });
+  }
 
   // wait for both bulk operations to finish and return stats
   Promise.all([charactersBulkWritePromise, timesBulkWritePromise])
@@ -61,9 +64,14 @@ const censusData = async (censusDb, cb) => {
           updated: charactersResult.nModified
         },
         timeStats: {
-          inserted: timesResult.nUpserted
+          inserted: 0
         }
       };
+
+      if (timesResult) {
+        stats.timeStats.inserted = timesResult.nUpserted;
+      }
+
       console.log('chars:', stats.charStats, 'times:', stats.timeStats);
       return cb(null, stats);
     })
