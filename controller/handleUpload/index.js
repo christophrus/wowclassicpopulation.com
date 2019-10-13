@@ -5,8 +5,8 @@ const luaToJson = require('lua-to-json');
 const process = require('./process');
 
 module.exports = (uploadPath, cb) => {
-  const currentAddonVersion = '0.7.0';
-  const validVersions = [currentAddonVersion, '0.8.0'];
+  const currentAddonVersion = '0.8.1';
+  const validVersions = [currentAddonVersion, '0.8.0', '0.7.0'];
   let data;
 
   // read uploaded file
