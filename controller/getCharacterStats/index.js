@@ -31,6 +31,12 @@ module.exports = (req, cb) => {
     }
   }
 
+  if (query.hasOwnProperty('lastSeen')) {
+    const date = new Date();
+    date.setDate(date.getDate() - Number(query.lastSeen));
+    query.lastSeen = { $gte: date };
+  }
+
   Character.aggregate(
     [
       { $match: query },

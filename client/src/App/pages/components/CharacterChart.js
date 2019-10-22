@@ -104,33 +104,11 @@ const CharacterChart = props => {
     );
   }
 
-  let warning;
-  if (
-    query &&
-    Object.prototype.hasOwnProperty.call(query, 'realm') &&
-    Array.isArray(query.realm) &&
-    query.realm.indexOf('Classic Beta PvP') !== -1 &&
-    !Object.prototype.hasOwnProperty.call(query, 'faction') &&
-    (!Object.prototype.hasOwnProperty.call(query, 'minLevel') || query.minLevel < 30)
-  ) {
-    warning = (
-      <div>
-        <FontAwesomeIcon
-          style={{ marginTop: '10px', color: 'yellow' }}
-          size="3x"
-          icon={faExclamationTriangle}
-        />
-        <p style={{ fontSize: '12px' }}>
-          Your current filter selection doesn&apos;t produce very meaningful results because at this
-          point there is not all data from PvP horde collected. (Ally started end May and horde just
-          some days ago) <br />
-          <br /> If you wanna see more meaningful results, you should set a filter for a specific
-          faction or at least a min level of 30 (better 40) when you really wanna see both factions
-          at once.
-        </p>
-      </div>
-    );
+  let activity;
+  if (query && query.lastSeen) {
+    activity = <h3>Last {query.lastSeen} days</h3>;
   }
+
   return (
     <div className="character-chart">
       {characterStats.realms.length === 0 ? (
@@ -150,8 +128,8 @@ const CharacterChart = props => {
         <div>
           {headLine}
           {subHeadline}
+          {activity}
           <p>Total characters recorded: {characterStats.total}</p>
-          {warning}
           <div className="chart-container character box-wrapper">
             {factionChart}
             {raceChart}

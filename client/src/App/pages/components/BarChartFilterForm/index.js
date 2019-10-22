@@ -75,11 +75,12 @@ const useStyles = makeStyles(theme => ({
 export default function BarChartFilterForm({ realmOptions, onChange }) {
   const classes = useStyles();
 
-  const [selectedRealm, setSelectedRealm] = React.useState([]);
+  const [selectedRealm, setSelectedRealm] = React.useState('');
   const [selectedFaction, setSelectedFaction] = React.useState('');
   const [selectedRace, setSelectedRace] = React.useState('');
   const [selectedClass, setSelectedClass] = React.useState('');
   const [selectedLevel, setSelectedLevel] = React.useState([1, 60]);
+  const [selectedLastSeen, setSelectedLastSeen] = React.useState('');
 
   const [factionOptions] = React.useState(getFactions());
   const [raceOptions, setRaceOptions] = React.useState(getRaces());
@@ -137,22 +138,27 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
     setSelectedLevel(newValue);
   }
 
+  function handleLastSeenChange(event) {
+    setSelectedLastSeen(event.target.value);
+  }
+
   function resetForm() {
-    setSelectedRealm([]);
+    setSelectedRealm('');
     setClassOptions(getClasses());
     setRaceOptions(getRaces());
     setSelectedFaction('');
     setSelectedRace('');
     setSelectedClass('');
     setSelectedLevel([1, 60]);
+    setSelectedLastSeen('');
     onChange({});
   }
 
   function handleApplyClick() {
     const query = {};
     const [minLevel, maxLevel] = selectedLevel;
-    if (selectedRealm !== []) {
-      query.realm = selectedRealm.map(realm => realm.label);
+    if (selectedRealm !== '') {
+      query.realm = selectedRealm.label;
     }
     if (selectedFaction !== '') {
       query.faction = selectedFaction.label;
@@ -169,6 +175,9 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
     if (maxLevel !== 60) {
       query.maxLevel = maxLevel;
     }
+    if (selectedLastSeen !== '') {
+      query.lastSeen = selectedLastSeen;
+    }
     onChange(query);
   }
 
@@ -179,17 +188,17 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
             <Select
-              multiple
               value={selectedRealm}
               onChange={handleRealmChange}
-              renderValue={selected => selected.map(element => element.labelClean).join(', ')}
               input={<Input id="realm-filter" name="realm" />}
               MenuProps={MenuProps}
             >
+              <MenuItem value="">
+                <em>All</em>
+              </MenuItem>
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
-                  <Checkbox checked={selectedRealm.indexOf(element) > -1} />
-                  <ListItemText primary={element.labelClean} />
+                  {element.labelClean}
                 </MenuItem>
               ))}
             </Select>
@@ -254,6 +263,32 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
                   {element.label}
                 </MenuItem>
               ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="lastSeen-filter">Last Seen</InputLabel>
+            <Select
+              value={selectedLastSeen}
+              onChange={handleLastSeenChange}
+              inputProps={{
+                name: 'lastSeen',
+                id: 'lastSeen-filter'
+              }}
+            >
+              <MenuItem value="">
+                <em>All</em>
+              </MenuItem>
+              <MenuItem value="7">
+                <em>Last 7 Days</em>
+              </MenuItem>
+              <MenuItem value="14">
+                <em>Last 14 Days</em>
+              </MenuItem>
+              <MenuItem value="30">
+                <em>Last 30 Days</em>
+              </MenuItem>
             </Select>
           </FormControl>
         </div>
