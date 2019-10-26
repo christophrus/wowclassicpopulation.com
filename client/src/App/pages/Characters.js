@@ -13,7 +13,8 @@ class Characters extends Component {
     this.state = {
       realmOptions: null,
       query: null,
-      characterStats: null
+      characterStats: null,
+      loading: false
     };
   }
 
@@ -21,7 +22,9 @@ class Characters extends Component {
   componentDidMount() {
     const { location } = this.props;
     const query = queryString.parse(location.search);
-    this.getCharacterStats(query);
+    if (Object.entries(query).length !== 0) {
+      this.getCharacterStats(query);
+    }
     getRealmList(realms => {
       this.setState({
         realmOptions: realms
@@ -31,13 +34,15 @@ class Characters extends Component {
 
   // Retrieves the list of items from the Express app
   getCharacterStats = (query, cb) => {
+    this.setState({ loading: true });
     const qs = queryString.stringify(query);
     window
       .fetch(`/api/stats/characters?${qs}`)
       .then(res => res.json())
       .then(characterStats => {
         this.setState({
-          characterStats
+          characterStats,
+          loading: false
         });
         if (cb) cb(characterStats);
       });
@@ -50,12 +55,12 @@ class Characters extends Component {
       pathname: '/characters',
       search: qs
     });
-    this.setState({ query });
+    this.setState({ query, loading: true });
     this.getCharacterStats(query);
   };
 
   render() {
-    const { characterStats, realmOptions, query } = this.state;
+    const { characterStats, realmOptions, query, loading } = this.state;
 
     let filterPanel;
 
@@ -64,6 +69,11 @@ class Characters extends Component {
         <BarChartFilterForm realmOptions={realmOptions} onChange={this.handleFilterChange} />
       );
     }
+
+    const loadingPanel = () => {
+      if (loading) return <div>Loading ...</div>;
+      return <div />;
+    };
 
     const description =
       'Character statistics give an overview about the the class, race and level distribution accross all Wow Classic realms';
@@ -82,8 +92,9 @@ class Characters extends Component {
         </Helmet>
         <h1>Characters</h1>
         {filterPanel}
+        {loadingPanel}
         {characterStats === null ? (
-          <div>Loading data</div>
+          <div />
         ) : (
           <div>
             <CharacterChart

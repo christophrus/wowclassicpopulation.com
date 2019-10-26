@@ -4,8 +4,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
@@ -316,7 +314,7 @@ export default function BarChartFilterForm({ realmOptions, onChange }) {
             className={classes.outlinedPrimary}
             onClick={handleApplyClick}
           >
-            Apply filter
+            Show stats
           </Button>
         </div>
       </div>
