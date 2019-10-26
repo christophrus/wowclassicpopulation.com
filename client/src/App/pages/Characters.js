@@ -81,11 +81,11 @@ class Characters extends Component {
           <title>{title}</title>
         </Helmet>
         <h1>Characters</h1>
+        {filterPanel}
         {characterStats === null ? (
           <div>Loading data</div>
         ) : (
           <div>
-            {filterPanel}
             <CharacterChart
               realmOptions={realmOptions}
               characterStats={characterStats}

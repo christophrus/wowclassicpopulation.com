@@ -1,13 +1,11 @@
 /* eslint-disable prefer-destructuring */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import './CharacterChart.css';
 import BarChart from './BarChart';
 
 const CharacterChart = props => {
-  const { realmOptions, characterStats, query } = props;
+  const { characterStats, query } = props;
   let realmLabel = 'All realms';
   let factionLabel = '';
   let raceLabel = '';
