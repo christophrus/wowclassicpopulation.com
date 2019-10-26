@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import BarChartFilterForm from './components/BarChartFilterForm';
 import CharacterChart from './components/CharacterChart';
 import getRealmList from './helper/getRealmList';
+import Spinner from './components/Spinner';
 
 class Characters extends Component {
   // Initialize the state
@@ -55,7 +56,7 @@ class Characters extends Component {
       pathname: '/characters',
       search: qs
     });
-    this.setState({ query, loading: true });
+    this.setState({ query });
     this.getCharacterStats(query);
   };
 
@@ -70,10 +71,10 @@ class Characters extends Component {
       );
     }
 
-    const loadingPanel = () => {
-      if (loading) return <div>Loading ...</div>;
+    function LoadingPanel(props) {
+      if (props.loading) return <Spinner width={400} height={400} />;
       return <div />;
-    };
+    }
 
     const description =
       'Character statistics give an overview about the the class, race and level distribution accross all Wow Classic realms';
@@ -92,7 +93,7 @@ class Characters extends Component {
         </Helmet>
         <h1>Characters</h1>
         {filterPanel}
-        {loadingPanel}
+        <LoadingPanel loading={loading} />
         {characterStats === null ? (
           <div />
         ) : (
