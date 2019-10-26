@@ -5,10 +5,11 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { Helmet } from 'react-helmet';
 import PieChart from './components/PieChart';
 import useWindowDimensions from './hooks/useWindowDimensions';
+import Spinner from './components/Spinner';
 
 const Home = () => {
   const [quickStats, setQuickstats] = useState(false);
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const getQuickStats = () => {
     window
@@ -25,7 +26,7 @@ const Home = () => {
     }
   });
 
-  let FactionPieChart = <div>Baking a pie ...</div>;
+  let FactionPieChart = <Spinner width={200} height={200} color="#442317" />;
   if (quickStats && quickStats.factions.length > 0) {
     let pieDimensions = 400;
     if (width < 500) {
