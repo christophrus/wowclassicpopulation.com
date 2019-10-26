@@ -72,7 +72,7 @@ class Characters extends Component {
     }
 
     function LoadingPanel(props) {
-      if (props.loading) return <Spinner width={400} height={400} />;
+      if (props.loading) return <Spinner width={300} height={300} color="#fff" />;
       return <div />;
     }
 
@@ -94,7 +94,7 @@ class Characters extends Component {
         <h1>Characters</h1>
         {filterPanel}
         <LoadingPanel loading={loading} />
-        {characterStats === null ? (
+        {characterStats === null || loading ? (
           <div />
         ) : (
           <div>

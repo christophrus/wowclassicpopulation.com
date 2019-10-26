@@ -108,7 +108,7 @@ const Contribute = () => {
       <div>
         <h2>Processing your data</h2>
         <p>Depending on your uploaded file size this may take a while</p>
-        <Spinner width={200} height={200} />
+        <Spinner width={200} height={200} color="#442317" />
       </div>
     );
   }

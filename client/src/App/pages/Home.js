@@ -12,7 +12,7 @@ const Home = () => {
 
   const getQuickStats = () => {
     window
-      .fetch(`/api/stats/quick`)
+      .fetch(`/api/stats/quick?lastSeen=14`)
       .then(res => res.json())
       .then(stats => {
         setQuickstats(stats);

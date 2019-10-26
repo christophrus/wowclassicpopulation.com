@@ -101,7 +101,9 @@ class PieChart extends Component {
     } = this.props;
     return (
       <div id={id}>
-        <h2>Total characters recorded: {total.toLocaleString()}</h2>
+        <h2>
+          Total characters recorded <br /> (last 14 days) <br /> {total.toLocaleString()}
+        </h2>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Spinner = props => {
-  const { width, height } = props;
+  const { width, height, color } = props;
   return (
     <svg
       className="lds-spinner"
@@ -14,7 +14,7 @@ const Spinner = props => {
       style={{ background: 'rgba(0, 0, 0, 0) none repeat scroll 0% 0%' }}
     >
       <g transform="rotate(0 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -26,7 +26,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(30 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -38,7 +38,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(60 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -50,7 +50,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(90 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -62,7 +62,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(120 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -74,7 +74,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(150 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -86,7 +86,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(180 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -98,7 +98,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(210 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -110,7 +110,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(240 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -122,7 +122,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(270 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -134,7 +134,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(300 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"
@@ -146,7 +146,7 @@ const Spinner = props => {
         </rect>
       </g>
       <g transform="rotate(330 50 50)">
-        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#442317">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill={color}>
           <animate
             attributeName="opacity"
             values="1;0"

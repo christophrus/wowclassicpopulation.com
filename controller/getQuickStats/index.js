@@ -18,6 +18,12 @@ module.exports = (req, cb) => {
     delete query.maxLevel;
   }
 
+  if (query.hasOwnProperty('lastSeen')) {
+    const date = new Date();
+    date.setDate(date.getDate() - Number(query.lastSeen));
+    query.lastSeen = { $gte: date };
+  }
+
   // remove from query if property value is all or both
   // eslint-disable-next-line no-restricted-syntax
   for (const key of Object.keys(query)) {
