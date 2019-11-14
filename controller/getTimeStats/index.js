@@ -55,6 +55,7 @@ module.exports = (req, cb) => {
 
   Time.find(query)
     .lean()
+    .cache(0)
     .exec((error, data) => {
       if (error) return cb({ status: 500, message: 'Database Error', trace: error });
       if (data) {

@@ -105,10 +105,11 @@ class Activity extends Component {
           />
         )}
         <p className="intro" style={{ marginTop: '10px' }}>
-          The activity charts can give you a good idea about the active Wow Classic Population.
-          Currently there is only census data from the Wow Classic Beta and stress test realms but
-          we aim to provide data from all the new realms that are coming when Classic launches as
-          well. You maybe need to select a specific time frame to get more meaningful results.
+          The activity charts can give you a good idea about the active Wow Classic Population and
+          how many people are playing WoW Classic. Currently there is census data from the most Wow
+          Classic realms but this project aims to provide data from all the realms as well. Keep in
+          mind that the data is only as good, as of how many people are uploading their data. You
+          maybe need to select a specific time frame to get more meaningful results.
         </p>
       </div>
     );

@@ -213,10 +213,9 @@ const Contribute = () => {
           <li>
             Navigate to{' '}
             <strong>
-              C:\Program Files\World of Warcraft\_classic_\WTF\Account\1234567#1\SavedVariables\
+              C:\Program Files\World of Warcraft\_classic_\WTF\Account\YOUR_ACCOUNT\SavedVariables\
             </strong>{' '}
-            and find the <strong>CensusPlusClassic.lua</strong>{' '}
-            <em>(1234567#1 is a different number for you or your account name)</em>
+            and find the <strong>CensusPlusClassic.lua</strong>
           </li>
           <li>
             Upload the <strong>CensusPlusClassic.lua</strong> through the upload button below

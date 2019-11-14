@@ -32,35 +32,36 @@ module.exports = (req, cb) => {
     }
   }
 
-  Character.aggregate(
-    [
-      { $match: query },
-      {
-        $facet: {
-          _total: [{ $group: { _id: null, count: { $sum: 1 } } }],
-          _factions: [
-            { $group: { _id: '$faction', _count: { $sum: 1 } } },
-            { $project: { _id: 0, name: '$_id', count: '$_count' } }
-          ]
-        }
-      },
-      {
-        $project: {
-          total: { $arrayElemAt: ['$_total.count', 0] },
-          factions: '$_factions'
-        }
+  Character.aggregate([
+    { $match: query },
+    {
+      $facet: {
+        _total: [{ $group: { _id: null, count: { $sum: 1 } } }],
+        _factions: [
+          { $group: { _id: '$faction', _count: { $sum: 1 } } },
+          { $project: { _id: 0, name: '$_id', count: '$_count' } }
+        ]
       }
-    ],
-    (error, data) => {
+    },
+    {
+      $project: {
+        total: { $arrayElemAt: ['$_total.count', 0] },
+        factions: '$_factions'
+      }
+    }
+  ])
+    .cache(0)
+    .exec((error, data) => {
       if (error) return cb({ status: 500, message: 'Database Error', trace: error });
       if (data && data.length > 0) {
-        Character.count({}, (err, count) => {
-          const ret = data[0];
-          ret.countAll = count;
-          return cb(null, ret);
-        });
+        Character.count({})
+          .cache(0)
+          .exec((err, count) => {
+            const ret = data[0];
+            ret.countAll = count;
+            return cb(null, ret);
+          });
       }
       return undefined;
-    }
-  );
+    });
 };

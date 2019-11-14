@@ -50,15 +50,6 @@ const charactersData = censusDb => {
               return;
             }
 
-            // temp fix
-            realm = realm === 'Classic Beta PvE' ? '4618_Classic Beta PvE' : realm;
-            realm = realm === 'Classic Beta PvP' ? '4619_Classic Beta PvP' : realm;
-            realm = realm === 'Field of Strife' ? '4620_Field of Strife' : realm;
-            realm = realm === 'Classic Realm 2' ? '9902_Classic Realm 2' : realm;
-            realm = realm === 'Classic Realm 3' ? '9903_Classic Realm 3' : realm;
-            realm = realm === 'Classic Realm 12' ? '9912_Classic Realm 12' : realm;
-            realm = realm === 'Classic Realm 15' ? '9915_Classic Realm 15' : realm;
-
             const insertChar = {
               name: char,
               realm,
@@ -99,15 +90,6 @@ const timesData = censusDb => {
             return;
           }
         }
-
-        // temp fix
-        realm = realm === 'Classic Beta PvE' ? '4618_Classic Beta PvE' : realm;
-        realm = realm === 'Classic Beta PvP' ? '4619_Classic Beta PvP' : realm;
-        realm = realm === 'Field of Strife' ? '4620_Field of Strife' : realm;
-        realm = realm === 'Classic Realm 2' ? '9902_Classic Realm 2' : realm;
-        realm = realm === 'Classic Realm 3' ? '9903_Classic Realm 3' : realm;
-        realm = realm === 'Classic Realm 12' ? '9912_Classic Realm 12' : realm;
-        realm = realm === 'Classic Realm 15' ? '9915_Classic Realm 15' : realm;
 
         // eslint-disable-next-line prettier/prettier
         const [druid, hunter, mage, priest, rogue, warlock, warrior, shaman, paladin] = times.split('&');

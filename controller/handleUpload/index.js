@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const JSZip = require('jszip');
 const luaToJson = require('lua-to-json');
+const cachegoose = require('cachegoose');
 const process = require('./process');
 
 module.exports = (uploadPath, cb) => {
-  const currentAddonVersion = '0.8.1';
-  const validVersions = [currentAddonVersion, '0.8.0', '0.7.0'];
+  const currentAddonVersion = '0.8.2';
+  const validVersions = [currentAddonVersion, '0.8.1', '0.8.0'];
   let data;
 
   // read uploaded file
@@ -67,6 +68,13 @@ module.exports = (uploadPath, cb) => {
     if (stats) {
       const retStats = { ...stats };
       retStats.updateDialog = false;
+      if (
+        stats.charStats.inserted !== 0 ||
+        stats.charStats.inserted !== 0 ||
+        stats.timeStats.inserted !== 0
+      ) {
+        cachegoose.clearCache(null);
+      }
       return cb(null, retStats);
     }
     return undefined;

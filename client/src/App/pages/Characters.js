@@ -108,10 +108,11 @@ class Characters extends Component {
         <p className="intro" style={{ marginTop: '10px' }}>
           The character charts can give you a good idea about the Wow Classic Population especially
           regarding to the balance of factions on a realm as well as about race, class and level
-          distribution. Currently there is only census data from the Wow Classic beta and stress
-          test realms, but as soon as Classic launches, we aim to cover all this new realms, too.
-          You can use the filter options to get an even deeper insight if you wanna take a look into
-          something more special. By the way you can also select multiple realms at once.
+          distribution. Currently there is census data from the most Wow Classic realms but this
+          project aims to provide data from all the realms as well. Keep in mind that the data is
+          only as good, as of how many people are uploading their data. You can use the filter
+          options to get an even deeper insight if you wanna take a look into something more
+          special.
         </p>
       </div>
     );

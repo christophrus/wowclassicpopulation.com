@@ -3,13 +3,17 @@ const path = require('path');
 const formidableMiddleware = require('express-formidable');
 
 const mongoose = require('mongoose');
+const cachegoose = require('cachegoose');
 const apiRouter = require('./routes/api');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, poolSize: 20 });
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
+mongoose.set('useUnifiedTopology', true);
 
 const app = express();
+
+cachegoose(mongoose);
 
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
