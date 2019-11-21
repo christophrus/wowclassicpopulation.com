@@ -23,6 +23,7 @@ const ActivityChart = props => {
 
   let headline = 'All realms';
   if (Object.prototype.hasOwnProperty.call(query, 'realm')) {
+    console.log(query);
     if (Array.isArray(query.realm)) {
       headline =
         query.realm.length > 0
@@ -30,7 +31,7 @@ const ActivityChart = props => {
           : headline;
     } else {
       // eslint-disable-next-line prefer-destructuring
-      headline = query.realm.element.match(/_(.*)/)[1];
+      headline = query.realm.match(/_(.*)/)[1];
     }
   }
 
