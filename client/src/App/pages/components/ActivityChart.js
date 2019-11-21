@@ -23,7 +23,6 @@ const ActivityChart = props => {
 
   let headline = 'All realms';
   if (Object.prototype.hasOwnProperty.call(query, 'realm')) {
-    console.log(query);
     if (Array.isArray(query.realm)) {
       headline =
         query.realm.length > 0
