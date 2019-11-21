@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import LineChartFilterForm from './components/LineChartFilterForm';
 import getRealmList from './helper/getRealmList';
 import ActivityChart from './components/ActivityChart';
+import Spinner from './components/Spinner';
 
 class Activity extends Component {
   // Initialize the state
@@ -13,6 +14,7 @@ class Activity extends Component {
     this.state = {
       activityStats: null,
       realmOptions: null,
+      loading: false,
       query: {},
       width: 0,
       height: 0
@@ -25,7 +27,9 @@ class Activity extends Component {
     const query = queryString.parse(location.search);
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
-    this.getActivityStats(query);
+    if (Object.entries(query).length !== 0) {
+      this.getActivityStats(query);
+    }
     getRealmList(realms => {
       this.setState({
         realmOptions: realms,
@@ -40,14 +44,15 @@ class Activity extends Component {
 
   // Retrieves the list of items from the Express app
   getActivityStats = (query, cb) => {
+    this.setState({ loading: true });
     const qs = queryString.stringify(query);
-
     window
       .fetch(`/api/stats/activity?${qs}`)
       .then(res => res.json())
       .then(activityStats => {
         this.setState({
-          activityStats
+          activityStats,
+          loading: false
         });
         if (cb) cb(activityStats);
       });
@@ -69,13 +74,18 @@ class Activity extends Component {
   };
 
   render() {
-    const { activityStats, realmOptions, query, width, height } = this.state;
+    const { activityStats, realmOptions, query, width, height, loading } = this.state;
 
     let filterPanel;
     if (realmOptions !== null) {
       filterPanel = (
         <LineChartFilterForm realmOptions={realmOptions} onChange={this.handleFilterChange} />
       );
+    }
+
+    function LoadingPanel(props) {
+      if (props.loading) return <Spinner width={300} height={300} color="#fff" />;
+      return <div />;
     }
 
     const description =
@@ -94,8 +104,9 @@ class Activity extends Component {
         </Helmet>
         <h1>Activity</h1>
         {filterPanel}
+        <LoadingPanel loading={loading} />
         {activityStats === null ? (
-          <div>Loading data</div>
+          <div />
         ) : (
           <ActivityChart
             width={width}
