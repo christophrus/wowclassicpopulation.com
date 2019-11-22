@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 export default function FilterForm({ realmOptions, onChange }) {
   const classes = useStyles();
 
-  const [selectedRealm, setSelectedRealm] = React.useState([]);
+  const [selectedRealm, setSelectedRealm] = React.useState('');
   const [selectedDateFrom, setSelectedDateFrom] = React.useState('');
   const [selectedDateTo, setSelectedDateTo] = React.useState('');
 
@@ -103,8 +103,8 @@ export default function FilterForm({ realmOptions, onChange }) {
 
   function handleApplyClick() {
     const query = {};
-    if (selectedRealm !== []) {
-      query.realm = selectedRealm.map(realm => realm.label);
+    if (selectedRealm !== '') {
+      query.realm = selectedRealm.label;
     }
     if (selectedDateFrom !== '') {
       query.dateFrom = selectedDateFrom;
@@ -122,17 +122,17 @@ export default function FilterForm({ realmOptions, onChange }) {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="realm-filter">Realm</InputLabel>
             <Select
-              multiple
               value={selectedRealm}
               onChange={handleRealmChange}
-              renderValue={selected => selected.map(element => element.labelClean).join(', ')}
               input={<Input id="realm-filter" name="realm" />}
               MenuProps={MenuProps}
             >
+              <MenuItem value="">
+                <em>All</em>
+              </MenuItem>
               {realmOptions.map(element => (
                 <MenuItem key={element.value} value={element}>
-                  <Checkbox checked={selectedRealm.indexOf(element) > -1} />
-                  <ListItemText primary={element.labelClean} />
+                  {element.labelClean}
                 </MenuItem>
               ))}
             </Select>
@@ -172,7 +172,7 @@ export default function FilterForm({ realmOptions, onChange }) {
             className={classes.outlinedPrimary}
             onClick={handleApplyClick}
           >
-            Apply filter
+            Show stats
           </Button>
         </div>
       </div>
