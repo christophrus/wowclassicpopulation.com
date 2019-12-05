@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import StackedBarChart from './components/StackedBarChart';
+import StackedBarChartFilterForm from './components/StackedBarChartFilterForm';
+import OverviewChart from './components/OverviewChart';
 import Spinner from './components/Spinner';
 
 class Overview extends Component {
@@ -24,7 +25,6 @@ class Overview extends Component {
     const query = queryString.parse(location.search);
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
-    this.getOverviewStats(query);
   }
 
   componentWillUnmount() {
@@ -36,7 +36,7 @@ class Overview extends Component {
     this.setState({ loading: true });
     const qs = queryString.stringify(query);
     window
-      .fetch(`/api/stats/overview?lastSeen=14`)
+      .fetch(`/api/stats/overview?${qs}`)
       .then(res => res.json())
       .then(overviewStats => {
         this.setState({
@@ -55,7 +55,7 @@ class Overview extends Component {
       search: qs
     });
     this.setState({ query });
-    this.getActivityStats(query);
+    this.getOverviewStats(query);
   };
 
   updateWindowDimensions = () => {
@@ -85,12 +85,12 @@ class Overview extends Component {
           <title>{title}</title>
         </Helmet>
         <h1>Overview of faction balance</h1>
-        <h2>(last 14 days)</h2>
+        <StackedBarChartFilterForm onChange={this.handleFilterChange} />
         <LoadingPanel loading={loading} />
-        {overviewStats === null ? (
+        {overviewStats === null || loading ? (
           <div />
         ) : (
-          <StackedBarChart id="activity-chart" data={overviewStats} />
+          <OverviewChart width={width} query={query} overviewStats={overviewStats} />
         )}
       </div>
     );

@@ -4,6 +4,20 @@ const Character = require('../../models/Character');
 module.exports = (req, cb) => {
   const query = { ...req.query };
 
+  // fix the query and replace minLevel/maxLevel with level
+  if (query.hasOwnProperty('minLevel')) {
+    query.level = { $gte: Number(query.minLevel) };
+    delete query.minLevel;
+  }
+  if (query.hasOwnProperty('maxLevel')) {
+    if (query.hasOwnProperty('level')) {
+      query.level.$lte = Number(query.maxLevel);
+    } else {
+      query.level = { $lte: Number(query.maxLevel) };
+    }
+    delete query.maxLevel;
+  }
+
   if (query.hasOwnProperty('lastSeen')) {
     const date = new Date();
     date.setHours(0);

@@ -15,14 +15,11 @@ const Header = props => {
         </Link>
       </div>
       <nav>
-        <Link className={pathname === '/' ? 'active' : ''} to="./">
-          Home
-        </Link>
         <Link className={pathname === '/overview' ? 'active' : ''} to="./overview">
           Overview
         </Link>
         <Link className={pathname === '/characters' ? 'active' : ''} to="./characters">
-          Characters
+          Details
         </Link>
         <Link className={pathname === '/activity' ? 'active' : ''} to="./activity">
           Activity

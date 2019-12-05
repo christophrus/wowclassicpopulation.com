@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import tip from 'd3-tip';
 import './index.css';
 
 class StackedBarChart extends Component {
@@ -8,8 +9,8 @@ class StackedBarChart extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { data, id } = this.props;
-    if (prevProps.data !== data) {
+    const { data, width, id } = this.props;
+    if (prevProps.data !== data || prevProps.width !== width) {
       d3.select(`#${id}`)
         .selectAll('svg')
         .remove();
@@ -18,23 +19,37 @@ class StackedBarChart extends Component {
   }
 
   drawChart() {
-    const { id, data } = this.props;
+    const { id, data, width } = this.props;
 
-    const width = 400;
     const height = data.length * 40;
 
     const margin = {
       top: 20,
-      right: 60,
+      right: 20,
       bottom: 30,
-      left: 120
+      left: 140
     };
 
     const svg = d3
       .select(`#${id}`)
       .append('svg')
-      .attr('width', width + margin.left + margin.right)
+      .attr('width', width)
       .attr('height', height);
+
+    const toolTip = tip()
+      .attr('class', 'd3-tip')
+      .direction('n')
+      .offset([-10, 0])
+      .html(d => {
+        const percent = ((d[1] - d[0]) * 100).toFixed(1);
+        const faction = d[0] === 0 ? 'Alliance' : 'Horde';
+        const absolute = d[0] === 0 ? d.data.alliance : d.data.horde;
+        return `<div>
+        <p>${faction}: ${absolute}</p>
+        <p>${percent}%</p>
+      </div>`;
+      });
+    svg.call(toolTip);
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -44,9 +59,9 @@ class StackedBarChart extends Component {
       .padding(0.1)
       .align(0.1);
 
-    const x = d3.scaleLinear().rangeRound([width, 0]);
+    const x = d3.scaleLinear().rangeRound([width - margin.left - margin.right, 0]);
 
-    const z = d3.scaleOrdinal().range(['#833', '#235']);
+    const z = d3.scaleOrdinal().range(['#235', '#833']);
 
     const stack = d3.stack().offset(d3.stackOffsetExpand);
 
@@ -61,7 +76,7 @@ class StackedBarChart extends Component {
       .attr('class', 'serie')
       .attr('fill', d => z(d.key));
 
-    const bar = serie
+    serie
       .selectAll('rect')
       .data(d => d)
       .enter()
@@ -69,13 +84,9 @@ class StackedBarChart extends Component {
       .attr('y', d => y(d.data.realm))
       .attr('x', d => x(d[1]))
       .attr('width', d => x(d[0]) - x(d[1]))
-      .attr('height', y.bandwidth());
-
-    bar
-      .append('text')
-      .attr('x', d => x(d[1]))
-      .attr('dy', '1.35em')
-      .text(d => d);
+      .attr('height', y.bandwidth())
+      .on('mouseover', toolTip.show)
+      .on('mouseout', toolTip.hide);
 
     g.append('g')
       .attr('class', 'axis axis--y')
