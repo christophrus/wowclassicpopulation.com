@@ -37,6 +37,15 @@ router.get('/stats/quick', (req, res, next) => {
   });
 });
 
+router.get('/stats/overview', (req, res, next) => {
+  controller.getOverviewStats(req, (err, data) => {
+    if (err) {
+      return next(err);
+    }
+    return res.json(data);
+  });
+});
+
 router.get('/stats/characters', (req, res, next) => {
   controller.getCharacterStats(req, (err, data) => {
     if (err) {

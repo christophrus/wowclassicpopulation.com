@@ -7,6 +7,7 @@ import Characters from './pages/Characters';
 import Activity from './pages/Activity';
 import Contribute from './pages/Contribute';
 import About from './pages/About';
+import Overview from './pages/Overview';
 import Header from './components/Header';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <div className="header-margin" />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/overview" component={Overview} />
             <Route path="/characters" component={Characters} />
             <Route path="/activity" component={Activity} />
             <Route path="/contribute" component={Contribute} />
