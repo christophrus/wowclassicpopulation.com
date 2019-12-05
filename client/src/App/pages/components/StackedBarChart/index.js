@@ -21,7 +21,7 @@ class StackedBarChart extends Component {
   drawChart() {
     const { id, data, width } = this.props;
 
-    const height = data.length * 40;
+    const height = data.length * 20;
 
     const margin = {
       top: 20,
