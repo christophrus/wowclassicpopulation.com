@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
@@ -22,9 +24,14 @@ class Overview extends Component {
   // Fetch the list on first mount
   componentDidMount() {
     const { location } = this.props;
-    const query = queryString.parse(location.search);
+    let query = queryString.parse(location.search);
+    if (Object.entries(query).length === 0) {
+      query = { lastSeen: 14, minLevel: 5 };
+    }
+    this.setState({ query });
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
+    this.getOverviewStats(query);
   }
 
   componentWillUnmount() {
