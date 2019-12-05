@@ -42,8 +42,8 @@ class StackedBarChart extends Component {
       .offset([-10, 0])
       .html(d => {
         const percent = ((d[1] - d[0]) * 100).toFixed(1);
-        const faction = d[0] === 0 ? 'Alliance' : 'Horde';
-        const absolute = d[0] === 0 ? d.data.alliance : d.data.horde;
+        const faction = d[0] === 0 && d[1] !== 1 ? 'Alliance' : 'Horde';
+        const absolute = d[0] === 0 && d[1] !== 1 ? d.data.alliance : d.data.horde;
         return `<div>
         <p>${faction}: ${absolute}</p>
         <p>${percent}%</p>
