@@ -64,6 +64,15 @@ router.get('/stats/activity', (req, res, next) => {
   });
 });
 
+router.get('/stats/status', (req, res, next) => {
+  controller.getStatusStats(req, (err, data) => {
+    if (err) {
+      return next(err);
+    }
+    return res.json(data);
+  });
+});
+
 // eslint-disable-next-line no-unused-vars
 router.get('/test', (req, res, next) => res.json({ test: 'test' }));
 // router.get('/stats/times', (req, res, next) => {});

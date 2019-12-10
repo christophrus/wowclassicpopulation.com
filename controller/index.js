@@ -4,6 +4,7 @@ const getCharacterStats = require('./getCharacterStats');
 const getTimeStats = require('./getTimeStats');
 const getQuickStats = require('./getQuickStats');
 const getOverviewStats = require('./getOverviewStats');
+const getStatusStats = require('./getStatusStats');
 
 module.exports = {
   handleUpload,
@@ -11,5 +12,6 @@ module.exports = {
   getCharacterStats,
   getTimeStats,
   getQuickStats,
-  getOverviewStats
+  getOverviewStats,
+  getStatusStats
 };

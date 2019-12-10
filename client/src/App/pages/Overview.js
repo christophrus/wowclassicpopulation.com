@@ -78,8 +78,8 @@ class Overview extends Component {
     }
 
     const description =
-      'Realm activity gives an overview about the active players concurrently online on Wow Classic realms in chart form';
-    const title = 'Population activity overview - Wow Classic population census project';
+      'Gives an overview about the faction balance through all WoW Classic reamls';
+    const title = 'Realm faction balance overview - Wow Classic population census project';
 
     return (
       <div className="App">

@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Characters from './pages/Characters';
@@ -8,6 +8,7 @@ import Activity from './pages/Activity';
 import Contribute from './pages/Contribute';
 import About from './pages/About';
 import Overview from './pages/Overview';
+import Status from './pages/Status';
 import Header from './components/Header';
 
 class App extends Component {
@@ -23,9 +24,15 @@ class App extends Component {
             <Route path="/characters" component={Characters} />
             <Route path="/activity" component={Activity} />
             <Route path="/contribute" component={Contribute} />
+            <Route path="/status" component={Status} />
             <Route path="/about" component={About} />
           </Switch>
           <footer>
+            <ul>
+              <li>
+                <Link to="./status">Status</Link>
+              </li>
+            </ul>
             <p>
               WowClassicPopulation uses names and images from World of Warcraft, and data
               proprietary to Blizzard Entertainment, Inc. World of Warcraft, Warcraft and Blizzard
