@@ -1,9 +1,19 @@
 const Character = require('../../models/Character');
 const Time = require('../../models/Time');
+const Realm = require('../../models/Realm');
 const parse = require('./parse');
 
 // process the lua database
 const censusData = async (censusDb, cb) => {
+  // write realms to realm collection
+  Object.entries(censusDb.Servers).forEach(([realm, realmData]) => {
+    const insertRealm = {
+      realm,
+      region: censusDb.Info.LoginServer
+    };
+    Realm.update(insertRealm, insertRealm, { upsert: true }).exec();
+  });
+
   // parse the lua structures and get a nore flattenned array
   let parsedTimes;
   let parsedCharacters;
