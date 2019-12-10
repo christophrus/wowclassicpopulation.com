@@ -5,7 +5,6 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import MaterialTable from 'material-table';
-import { border } from '@material-ui/system';
 import StatusFilterForm from './components/StatusFilterForm';
 import Spinner from './components/Spinner';
 import './Status.css';
@@ -25,6 +24,7 @@ class Overview extends Component {
   componentDidMount() {
     const { location } = this.props;
     const query = queryString.parse(location.search);
+    this.setState({ query });
     this.getStatusStats(query);
   }
 
@@ -99,7 +99,7 @@ class Overview extends Component {
               columns={[
                 { title: 'Realm', field: 'realm' },
                 { title: 'Faction', field: 'faction' },
-                { title: 'Num census taken', field: 'count', type: 'numeric' },
+                { title: 'Census amount', field: 'count', type: 'numeric' },
                 { title: 'Last census', field: 'last', type: 'datetime' }
               ]}
               data={statusStats}
