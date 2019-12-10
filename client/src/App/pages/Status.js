@@ -67,8 +67,13 @@ class Overview extends Component {
       return <div />;
     }
 
-    const description = '';
-    const title = '';
+    const description = 'Shows how frequent realms got updates and when the last update was';
+    const title = 'Realm update status - Wow Classic population census project';
+
+    let activity = <h3>All time</h3>;
+    if (query && query.lastDays) {
+      activity = <h3>Last {query.lastDays} days</h3>;
+    }
 
     return (
       <div className="App">
@@ -81,13 +86,14 @@ class Overview extends Component {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           <title>{title}</title>
         </Helmet>
-        <h1>Status</h1>
+        <h1>Realm update status</h1>
         <StatusFilterForm onChange={this.handleFilterChange} />
         <LoadingPanel loading={loading} />
         {statusStats === null || loading ? (
           <div />
         ) : (
           <div style={{ marginTop: '15px' }}>
+            {activity}
             <MaterialTable
               title="Census stats"
               columns={[
@@ -98,6 +104,7 @@ class Overview extends Component {
               ]}
               data={statusStats}
               style={{
+                marginTop: '10px',
                 borderRadius: '15px',
                 background: 'rgba(54, 164, 170,0.8)',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
