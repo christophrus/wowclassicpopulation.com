@@ -18,7 +18,7 @@
     "formidable": "^1.2.1",
     "jszip": "^3.2.2",
     "lua-to-json": "github:christophrus/lua-to-json",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.7.3"
   },
   "devDependencies": {
